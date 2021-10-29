@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@mipmap/ico_go_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Mine"
+            android:textSize="16dp" />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/common_google_signin_btn_text_light_disabled" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+
+        android:layout_marginTop="24dp" />
+
+    <EditText
+        android:id="@+id/profileFullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:hint="Your Name"
+        android:inputType="textPersonName"
+        android:textSize="15dp" />
+
+
+    <EditText
+        android:id="@+id/profileEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:hint="Your Email Address"
+        android:inputType="textEmailAddress"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/profilePhoneNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:hint="Phone"
+        android:inputType="phone"
+        android:textSize="15dp" />
+
+    <Button
+        android:id="@+id/saveProfileInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:background="@color/colorAccent"
+        android:text="Save"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</LinearLayout>
