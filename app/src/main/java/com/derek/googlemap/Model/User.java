@@ -4,26 +4,26 @@ import android.text.TextUtils;
 
 import com.google.firebase.database.Exclude;
 
-public class Teacher {
-    private String name;
-    private String imageURL;
-    private String key;
-    private String lati;
-    private String loti;
-    private String email;
-    private String password;
-    private String phone;
-    private int position;
+public class User {
+    private String name;        // name of user
+    private String imageURL;    // iuser con ulr
+    private String key;         // the unique key of user
+    private String lati;        // latitude coordinate
+    private String loti;        // longtitude coordinate
+    private String email;       // user email
+    private String password;    // user password
+    private String phone;       // user phone number
+    private int position;       // user position
 
-    public Teacher() {
+    public User() {
         //empty constructor needed
     }
 
-    public Teacher(int position) {
+    public User(int position) {
         this.position = position;
     }
 
-    public Teacher(String name, String imageUrl, String lati, String loti) {
+    public User(String name, String imageUrl, String lati, String loti) {
         if (TextUtils.isEmpty(name)) {
             name = "No Name";
         }
