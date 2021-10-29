@@ -18,19 +18,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.COMP90018Asm2_02">
-        <activity android:name=".MapsActivity" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
+        <activity android:name=".LoginActivity"
             android:theme="@style/Theme.COMP90018Asm2_02.NoActionBar">
-            <!--android:label="@string/title_activity_maps">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".MapsActivity" />
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.COMP90018Asm2_02.NoActionBar"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
