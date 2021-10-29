@@ -1,3 +1,7 @@
+/**
+ * This file is a model(Container) of user information
+ * which store all the information of a user
+ */
 package com.derek.googlemap.Model;
 
 import android.text.TextUtils;
@@ -23,6 +27,13 @@ public class User {
         this.position = position;
     }
 
+    /**
+     * Create a user with name, icon, latitude, and longtitude
+     * @param name name of user
+     * @param imageUrl icon url
+     * @param lati latitude
+     * @param loti longtitude
+     */
     public User(String name, String imageUrl, String lati, String loti) {
         if (TextUtils.isEmpty(name)) {
             name = "No Name";
