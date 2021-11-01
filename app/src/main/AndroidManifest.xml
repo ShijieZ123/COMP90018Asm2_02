@@ -19,6 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.COMP90018Asm2_02">
         <activity android:name=".LoginActivity"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/Theme.COMP90018Asm2_02.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -9,7 +9,7 @@
     <EditText
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/etUsername"
+        android:id="@+id/etFullname"
         app:layout_constraintBottom_toTopOf="@id/etEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -22,7 +22,7 @@
         android:paddingBottom="10dp"
         android:paddingLeft="20dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/curled_corners_bg"/>
+        />
 
     <EditText
         android:layout_width="0dp"
@@ -38,8 +38,7 @@
         app:layout_constraintWidth_percent="0.8"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:background="@drawable/curled_corners_bg"/>
+        android:paddingLeft="20dp"/>
 
     <EditText
         android:layout_width="0dp"
@@ -56,8 +55,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:paddingLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/curled_corners_bg"/>
+        android:layout_marginTop="20dp"/>
 
     <EditText
         android:layout_width="0dp"
@@ -69,13 +67,13 @@
         app:layout_constraintVertical_bias="0"
         android:layout_marginTop="20dp"
         android:hint="Password"
+        android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etPhone"
         app:layout_constraintWidth_percent="0.8"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:background="@drawable/curled_corners_bg"/>
+        android:paddingLeft="20dp"/>
 
     <EditText
         android:layout_width="0dp"
@@ -87,15 +85,15 @@
         app:layout_constraintVertical_bias="0"
         android:layout_marginTop="20dp"
         android:hint="Confirm password"
+        android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etPassword"
         app:layout_constraintWidth_percent="0.8"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:background="@drawable/curled_corners_bg"/>
+        android:paddingLeft="20dp"/>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/btnRegister"
@@ -105,6 +103,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etConfirmPassword"
         app:layout_constraintWidth_percent="0.8"
-        android:background="@drawable/curled_corners_color_bg"/>
+        android:backgroundTint="@color/teal_200"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

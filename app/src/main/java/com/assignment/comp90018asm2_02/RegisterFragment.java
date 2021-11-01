@@ -47,7 +47,7 @@ import androidx.core.app.ActivityCompat;
 public class RegisterFragment extends Fragment {
 
     public static final String TAG = "TAG";
-    private EditText etUsername, etEmail, etPassword, etConfirmPassword, etPhone;
+    private EditText etFullname, etEmail, etPassword, etConfirmPassword, etPhone;
     private Button btnRegister;
     private FirebaseAuth fAuth;
     private FirebaseFirestore fStore;
@@ -69,7 +69,7 @@ public class RegisterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        etUsername = getView().findViewById(R.id.etUsername);
+        etFullname = getView().findViewById(R.id.etFullname);
         etEmail = getView().findViewById(R.id.etEmail);
         etPassword = getView().findViewById(R.id.etPassword);
         etConfirmPassword = getView().findViewById(R.id.etConfirmPassword);
@@ -94,12 +94,11 @@ public class RegisterFragment extends Fragment {
         } else if (providers.contains(LocationManager.NETWORK_PROVIDER)) {
             locationProvider = LocationManager.NETWORK_PROVIDER;
         } else {
-            Toast.makeText(getActivity(), "No location Provider", Toast.LENGTH_SHORT).show();
-            return;
+            Toast.makeText(getActivity(), "No location provider", Toast.LENGTH_SHORT).show();
         }
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED 
                 && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
+            Toast.makeText(getActivity(), "Permission required", Toast.LENGTH_SHORT).show();
         }
 
         location = locationManager.getLastKnownLocation(locationProvider);
@@ -111,27 +110,35 @@ public class RegisterFragment extends Fragment {
                 final String email = etEmail.getText().toString().trim();
                 final String password = etPassword.getText().toString().trim();
                 final String confirmPassword = etConfirmPassword.getText().toString().trim();
-                final String fullName = etUsername.getText().toString();
+                final String username = etFullname.getText().toString();
                 final String phone = etPhone.getText().toString();
+                
+                while (true) {
+                    boolean empty = false;
+                    
+                    if (TextUtils.isEmpty(username))
+                    
+                    if (TextUtils.isEmpty(email)) {
+                        etEmail.setError("Email is required.");
+                        empty = true;
+                    }
 
-                if (TextUtils.isEmpty(email)) {
-                    etEmail.setError("Email is required.");
-                    return;
-                }
+                    if (TextUtils.isEmpty(password)) {
+                        etPassword.setError("Password is required.");
+                        empty = true;
+                    }
 
-                if (TextUtils.isEmpty(password)) {
-                    etPassword.setError("Password is required.");
-                    return;
-                }
+                    if (!password.equals(confirmPassword)) {
+                        etPassword.setError("Passwords do not match.");
+                        empty = true;
+                    }
 
-                if (!password.equals(confirmPassword)) {
-                    etPassword.setError("Passwords do not match.");
-                    return;
-                }
-
-                if (password.length() < 6) {
-                    etPassword.setError("Password must be at least 6 characters long.");
-                    return;
+                    if (password.length() < 6) {
+                        etPassword.setError("Password must be at least 6 characters long.");
+                        empty = true;
+                    }
+                    
+                    break;
                 }
 
                 // register the user in firebase
@@ -141,8 +148,8 @@ public class RegisterFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // send verification link
-                            FirebaseUser fuser = fAuth.getCurrentUser();
-                            fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            FirebaseUser fUser = fAuth.getCurrentUser();
+                            fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(getActivity(), "Verification Email Has been Sent.", Toast.LENGTH_SHORT).show();
@@ -158,7 +165,7 @@ public class RegisterFragment extends Fragment {
                             userID = fAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("users").document(userID);
                             Map<String, Object> user = new HashMap<>();
-                            user.put("fName", fullName);
+                            user.put("fName", username);
                             user.put("email", email);
                             user.put("phone", phone);
                             user.put("lati", location.getLatitude());
@@ -195,7 +202,7 @@ public class RegisterFragment extends Fragment {
 /**
 public class Register extends AppCompatActivity {
     public static final String TAG = "TAG";
-    EditText etUsername, etEmail, etPassword, etPhone;
+    EditText etFullname, etEmail, etPassword, etPhone;
     Button btnRegister;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
@@ -215,7 +222,7 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         back = getView().findViewById(R.id.iv_back);
-        etUsername = getView().findViewById(R.id.fullName);
+        etFullname = getView().findViewById(R.id.username);
         etEmail = getView().findViewById(R.id.Email);
         etPassword = getView().findViewById(R.id.password);
         etPhone = getView().findViewById(R.id.phone);
@@ -255,7 +262,7 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 final String email = etEmail.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
-                final String fullName = etUsername.getText().toString();
+                final String username = etFullname.getText().toString();
                 final String phone = etPhone.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
@@ -299,7 +306,7 @@ public class Register extends AppCompatActivity {
                             userID = fAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("users").document(userID);
                             Map<String, Object> user = new HashMap<>();
-                            user.put("fName", fullName);
+                            user.put("fName", username);
                             user.put("email", email);
                             user.put("phone", phone);
                             user.put("lati", location.getLatitude());

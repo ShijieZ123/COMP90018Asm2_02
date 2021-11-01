@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -20,12 +21,14 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private NavigationView navView;
+    private TextView logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navView = findViewById(R.id.nav_view);
         navView.setNavigationItemSelectedListener(this);
         toolbar = findViewById(R.id.toolbar);
+        logout = findViewById(R.id.tvLogout);
+
         setSupportActionBar(toolbar);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -57,6 +62,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    public void onClick(View view) {
+        // logout
+        Toast.makeText(this, "Logout pressed...", Toast.LENGTH_SHORT);
+        FirebaseAuth.getInstance().signOut();
+        Intent i = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(i);
+        this.finish();
+    }
+
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -74,6 +88,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(
                         R.id.frag_layout,
                         new HomeFragment()
+                ).commit();
+                break;
+            case R.id.nav_profile:
+                getSupportFragmentManager().beginTransaction().replace(
+                        R.id.frag_layout,
+                        new UserProfileFragment()
                 ).commit();
                 break;
             case R.id.nav_map:

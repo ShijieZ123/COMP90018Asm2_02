@@ -54,6 +54,7 @@ public class LoginFragment extends Fragment {
         if (fAuth.getCurrentUser() != null) {
             Intent i = new Intent(getActivity(), MainActivity.class);
             startActivity(i);
+            getActivity().finish();
         }
 
         etEmail = getView().findViewById(R.id.etEmail);
@@ -70,19 +71,21 @@ public class LoginFragment extends Fragment {
                 String email = etEmail.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
 
-                if(TextUtils.isEmpty(email)){
-                    etEmail.setError("Email is Required.");
-                    return;
-                }
+                while (true) {
+                    boolean empty = false;
+                    if (TextUtils.isEmpty(email)) {
+                        etEmail.setError("Email is Required.");
+                        empty = true;
+                    }
 
-                if(TextUtils.isEmpty(password)){
-                    etPassword.setError("Password is Required.");
-                    return;
-                }
-
-                if(password.length() < 6){
-                    etPassword.setError("Password Must be >= 6 Characters");
-                    return;
+                    if (TextUtils.isEmpty(password)) {
+                        etPassword.setError("Password is Required.");
+                        empty = true;
+                    }
+                    if (empty) {
+                        return;
+                    }
+                    break;
                 }
 
                 // authenticate the user
@@ -95,6 +98,7 @@ public class LoginFragment extends Fragment {
 
                             Intent i = new Intent(getActivity(), MainActivity.class);
                             startActivity(i);
+                            getActivity().finish();
                         }else {
                             Toast.makeText(getActivity(), "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }

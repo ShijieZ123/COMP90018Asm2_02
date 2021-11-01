@@ -7,7 +7,7 @@
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity"
-    >
+    tools:openDrawer="start">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,42 +33,24 @@
         android:layout_gravity="start"
         android:id="@+id/nav_view"
         app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu" />
+        app:menu="@menu/drawer_menu"> />
 
-    <!--
-    <TextView
-        android:id="@+id/tvMain"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="Functions:"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvLogout"
+            android:layout_marginLeft="24dp"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="bottom"
+            android:textSize="14dp"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:textStyle="bold"
+            android:background="?attr/selectableItemBackground"
+            android:textColor="@color/black"
+            android:text="Logout"/>
 
+    </com.google.android.material.navigation.NavigationView>
 
-    <Button
-        android:id="@+id/MapBtn"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="Maps"
-        android:textAllCaps="false"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvMain" />
-
-
-    <Button
-        android:id="@+id/QRCodeBtn"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="QR Code"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/MapBtn" />
-        -->
 
 </androidx.drawerlayout.widget.DrawerLayout>
