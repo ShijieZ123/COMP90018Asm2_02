@@ -1,40 +1,10 @@
 {
   "project_info": {
     "project_number": "189302090056",
-    "firebase_url": "https://mapdemo-45732-default-rtdb.firebaseio.com",
     "project_id": "mapdemo-45732",
     "storage_bucket": "mapdemo-45732.appspot.com"
   },
   "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:189302090056:android:f2c1966211fd97c29b2b7d",
-        "android_client_info": {
-          "package_name": "com.assignment.comp90018asm2_02"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "189302090056-7glkjq35hlnp5ci70t12p2f6dv493qk4.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCOFPo2AELDPGICRBfbP7ZsC_uNhNjgRug"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "189302090056-7glkjq35hlnp5ci70t12p2f6dv493qk4.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:189302090056:android:6e3c53de0ec2c85a9b2b7d",
