@@ -361,7 +361,6 @@ public class EditProfile extends TakePhotoActivity {
                 }
                 break;
         }
-
     }
 
     private String getFileExtension(Uri uri) {
@@ -423,7 +422,6 @@ public class EditProfile extends TakePhotoActivity {
                 Toast.makeText(getApplicationContext(), "Failed.", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
 

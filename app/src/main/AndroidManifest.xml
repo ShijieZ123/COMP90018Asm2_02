@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".View.ItemsActivity">
+            android:name=".View.MainActivity">
 
 
 
@@ -41,7 +41,7 @@
         <activity
             android:name=".View.DetailsActivity"
             android:label="Details Page "
-            android:parentActivityName=".View.ItemsActivity" />
+            android:parentActivityName=".View.MainActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

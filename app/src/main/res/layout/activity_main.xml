@@ -1,41 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    tools:context="com.derek.googlemap.View.MainActivity">
-
+    android:id="@+id/drawer_layout"
+    android:fitsSystemWindows="true"
+    tools:context=".View.MainActivity"
+    >
 
     <LinearLayout
-        android:id="@+id/button_zone"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:padding="15dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/openTeachersActivityBtn"
-            style="?android:attr/button"
+        <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:text="Check friends' locations"
-            android:textColor="@color/white" />
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/toolbar"
+            android:elevation="4dp" />
 
-        <Button
-            android:id="@+id/openUploadActivityBtn"
-            style="?android:attr/button"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@color/colorPrimary"
-            android:clickable="true"
-            android:text="Add an account"
-            android:textColor="@color/white" />
+            android:layout_height="match_parent"
+            android:id="@+id/frag_layout" />
 
     </LinearLayout>
 
-</RelativeLayout>
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:id="@+id/nav_view"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/drawer_menu" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

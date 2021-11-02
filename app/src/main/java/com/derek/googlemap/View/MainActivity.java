@@ -63,12 +63,13 @@ import butterknife.OnClick;
 import com.derek.googlemap.BitmapFillet;
 
 
-public class ItemsActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener {
 
     @BindView(R.id.btn_add)
     Button btnAdd;
     @BindView(R.id.iv_refresh)
     ImageView ivRefresh;
+
     private ProgressBar mProgressBar;
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
