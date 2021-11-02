@@ -65,9 +65,10 @@
             android:src="@drawable/compass" />
 
     </RelativeLayout>
+
     <ImageView
         android:id="@+id/iv_image"
-        android:visibility="gone"
         android:layout_width="100dp"
-        android:layout_height="100dp" />
+        android:layout_height="100dp"
+        android:visibility="gone" />
 </RelativeLayout>

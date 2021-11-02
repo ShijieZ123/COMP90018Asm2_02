@@ -3,20 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/drawable/add_user_bg.xml" value="0.34444444444444444" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/drawable/ic_launcher_background.xml" value="0.5111111111111111" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_detail.xml" value="0.2621580547112462" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_edit_profile.xml" value="0.2621580547112462" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_items.xml" value="0.2621580547112462" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_login.xml" value="0.2621580547112462" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_main.xml" value="0.2689969604863222" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_maps.xml" value="0.2689969604863222" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_register.xml" value="0.2621580547112462" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_upload.xml" value="0.2621580547112462" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/fragment_generator.xml" value="0.2621580547112462" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/googlemap_marker_layout.xml" value="0.29528985507246375" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/row_model.xml" value="0.29528985507246375" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/menu/drawer_menu.xml" value="0.5307692307692308" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_compass.xml" value="0.5285326086956522" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_detail.xml" value="0.5536458333333333" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_edit_profile.xml" value="0.5536458333333333" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_items.xml" value="0.5536458333333333" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_login.xml" value="0.5536458333333333" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_main.xml" value="0.3302083333333333" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_maps.xml" value="0.3302083333333333" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_register.xml" value="0.5536458333333333" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_upload.xml" value="0.5536458333333333" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/googlemap_marker_layout.xml" value="0.5536458333333333" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/row_model.xml" value="0.5536458333333333" />
       </map>
     </option>
   </component>

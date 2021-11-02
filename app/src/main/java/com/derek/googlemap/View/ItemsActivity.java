@@ -229,7 +229,6 @@ public class ItemsActivity extends AppCompatActivity implements OnMapReadyCallba
                     }
                 });
 
-
     }
 
     protected void onDestroy() {
@@ -339,13 +338,13 @@ public class ItemsActivity extends AppCompatActivity implements OnMapReadyCallba
         switch (view.getId()) {
             case R.id.btn_add:
 
-
                 intent = new Intent(this, UploadActivity.class);
                 intent.putExtra("friend", friend);
                 startActivity(intent);
-
                 break;
+
             case R.id.iv_refresh:
+
                 intent = new Intent(this, EditProfile.class);
                 startActivity(intent);
 
