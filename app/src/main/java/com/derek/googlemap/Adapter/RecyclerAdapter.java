@@ -19,17 +19,17 @@ import java.util.Date;
 import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
-import com.derek.googlemap.Model.Teacher;
+import com.derek.googlemap.Model.User;
 
 
 public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.RecyclerViewHolder>{
     private Context mContext;
-    private List<Teacher> teachers;
+    private List<User> users;
     private OnItemClickListener mListener;
 
-    public RecyclerAdapter(Context context, List<Teacher> uploads) {
+    public RecyclerAdapter(Context context, List<User> uploads) {
         mContext = context;
-        teachers = uploads;
+        users = uploads;
     }
 
     @Override
@@ -40,12 +40,12 @@ public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recyc
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-        Teacher currentTeacher = teachers.get(position);
-        holder.nameTextView.setText(currentTeacher.getName());
-        holder.descriptionTextView.setText(currentTeacher.getLati());
+        User currentUser = users.get(position);
+        holder.nameTextView.setText(currentUser.getName());
+        holder.descriptionTextView.setText(currentUser.getLati());
         holder.dateTextView.setText(getDateToday());
         Picasso.with(mContext)
-                .load(currentTeacher.getImageURL())
+                .load(currentUser.getImageURL())
                 .placeholder(R.drawable.placeholder)
                 .fit()
                 .centerCrop()
@@ -54,7 +54,7 @@ public  class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Recyc
 
     @Override
     public int getItemCount() {
-        return teachers.size();
+        return users.size();
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,

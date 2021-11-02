@@ -4,7 +4,7 @@ import android.text.TextUtils;
 
 import com.google.firebase.database.Exclude;
 
-public class Teacher {
+public class User {
     private String name;
     private String imageURL;
     private String key;
@@ -15,15 +15,15 @@ public class Teacher {
     private String phone;
     private int position;
 
-    public Teacher() {
+    public User() {
         //empty constructor needed
     }
 
-    public Teacher(int position) {
+    public User(int position) {
         this.position = position;
     }
 
-    public Teacher(String name, String imageUrl, String lati, String loti) {
+    public User(String name, String imageUrl, String lati, String loti) {
         if (TextUtils.isEmpty(name)) {
             name = "No Name";
         }
