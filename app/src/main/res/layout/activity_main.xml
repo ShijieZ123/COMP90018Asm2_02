@@ -4,38 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
-    tools:context="com.derek.googlemap.View.MainActivity">
+    android:orientation="vertical"
+    tools:context=".View.MainActivity">
 
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        map:cameraTilt="30"
+        map:uiRotateGestures="true"
+        tools:context="com.example.goolgle.MainActivity" />
 
-    <LinearLayout
-        android:id="@+id/button_zone"
+    <ProgressBar
+        android:id="@+id/myDataLoaderProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:padding="15dp">
+        android:indeterminate="true"
+        android:indeterminateBehavior="cycle"
+        android:visibility="gone" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp">
 
         <Button
-            android:id="@+id/openTeachersActivityBtn"
-            style="?android:attr/button"
-            android:layout_width="match_parent"
+            android:id="@+id/btn_add"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:text="Check friends' locations"
+
+            android:layout_centerInParent="true"
+            android:background="@drawable/add_user_bg"
+            android:text="+Add"
             android:textColor="@color/white" />
 
-        <Button
-            android:id="@+id/openUploadActivityBtn"
-            style="?android:attr/button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@color/colorPrimary"
-            android:clickable="true"
-            android:text="Add an account"
-            android:textColor="@color/white" />
+        <ImageView
+            android:id="@+id/iv_refresh"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="75dp"
+            android:layout_marginBottom="10dp"
+            android:background="@mipmap/default_red" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="0dp"
+            android:layout_marginBottom="0dp"
+            android:src="@drawable/compass" />
 
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/iv_image"
+        android:visibility="gone"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 </RelativeLayout>

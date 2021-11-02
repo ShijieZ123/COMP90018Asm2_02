@@ -63,7 +63,7 @@ import butterknife.OnClick;
 import com.derek.googlemap.BitmapFillet;
 
 
-public class ItemsActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener {
 
     @BindView(R.id.btn_add)
     Button btnAdd;
@@ -103,7 +103,7 @@ public class ItemsActivity extends AppCompatActivity implements OnMapReadyCallba
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_items);
+        setContentView(R.layout.activity_main);
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
