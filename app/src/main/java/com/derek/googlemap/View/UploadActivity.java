@@ -88,6 +88,7 @@ public class UploadActivity extends AppCompatActivity {
         etWeidu = findViewById(R.id.et_weidu);
         chosenImageView = findViewById(R.id.chosenImageView);
         uploadProgressBar = findViewById(R.id.progress_bar);
+
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         user = fAuth.getCurrentUser();
@@ -213,7 +214,7 @@ public class UploadActivity extends AppCompatActivity {
                                 }
                             }, 500);
 
-                            Toast.makeText(UploadActivity.this, "保存成功", Toast.LENGTH_LONG).show();
+                            Toast.makeText(UploadActivity.this, "Saved successfully", Toast.LENGTH_LONG).show();
 
 
                             Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();

@@ -230,7 +230,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 });
 
-
     }
 
     protected void onDestroy() {
@@ -340,13 +339,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         switch (view.getId()) {
             case R.id.btn_add:
 
-
                 intent = new Intent(this, UploadActivity.class);
                 intent.putExtra("friend", friend);
                 startActivity(intent);
-
                 break;
+
             case R.id.iv_refresh:
+
                 intent = new Intent(this, EditProfile.class);
                 startActivity(intent);
 
