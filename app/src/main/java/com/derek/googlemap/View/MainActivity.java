@@ -14,6 +14,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -29,6 +32,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.derek.googlemap.R;
 import com.derek.googlemap.Utility.Login;
@@ -74,7 +78,7 @@ import com.derek.googlemap.BitmapFillet;
 import com.derek.googlemap.Utility.*;
 
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener, PopupMenu.OnMenuItemClickListener {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener, PopupMenu.OnMenuItemClickListener, LocationListener {
 
     @BindView(R.id.btn_add)
     Button btnAdd;
@@ -110,6 +114,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     long lastUpdatedTime = 0;
     float currentDegree = 0f;
+
+    private TextView speed;
 
     //******************Navigation*******************
     DrawerLayout drawerLayout;
@@ -218,6 +224,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
 
+        // text show current speed
+        speed = (TextView) findViewById(R.id.speed);
+        LocationManager lm =(LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 1, this);
+        this.onLocationChanged(null);
+
+        // menu button click listener
         ImageButton menu_button = (ImageButton) findViewById(R.id.map_menu);
         menu_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -564,6 +577,40 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void onLocationChanged(@NonNull Location location) {
+        if (location==null){
+            // if you can't get speed because reasons :)
+            this.speed.setText("00 km/h");
+        }
+        else{
+            //int speed=(int) ((location.getSpeed()) is the standard which returns meters per second. In this example i converted it to kilometers per hour
+
+            int speed=(int) ((location.getSpeed()*3600)/1000);
+            this.speed.setText(speed+" km/h");
+        }
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        // TODO Auto-generated method stub
+
+    }
+
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        // TODO Auto-generated method stub
+
+    }
+
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+
     }
 }
 
