@@ -10,6 +10,7 @@
     tools:context=".View.MainActivity">
 
     <RelativeLayout
+        android:id="@+id/map_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -74,9 +75,9 @@
 
         <ImageView
             android:id="@+id/iv_image"
-            android:visibility="gone"
             android:layout_width="100dp"
-            android:layout_height="100dp" />
+            android:layout_height="100dp"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

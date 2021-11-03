@@ -12,6 +12,10 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.derek.googlemap.R;
+import com.derek.googlemap.Utility.AccelerometerFragment;
+import com.derek.googlemap.Utility.EnvironmentsFragment;
+import com.derek.googlemap.Utility.GeneratorFragment;
+import com.derek.googlemap.Utility.ScannerFragment;
 
 public class NavigationActivity extends AppCompatActivity {
     //Initialize variable
@@ -42,6 +46,34 @@ public class NavigationActivity extends AppCompatActivity {
         closeDrawer(drawerLayout);
     }
 
+    public void ClickQrGenerate(View view){
+        getSupportFragmentManager().beginTransaction().replace(
+                R.id.map_layout,
+                new GeneratorFragment()
+        ).commit();
+    }
+
+    public void ClickQrScanner(View view){
+        getSupportFragmentManager().beginTransaction().replace(
+                R.id.map_layout,
+                new ScannerFragment()
+        ).commit();
+    }
+
+    public void ClickEnvironment(View view){
+        getSupportFragmentManager().beginTransaction().replace(
+                R.id.map_layout,
+                new EnvironmentsFragment()
+        ).commit();
+    }
+
+    public void ClickAcceleration(View view){
+        getSupportFragmentManager().beginTransaction().replace(
+                R.id.map_layout,
+                new AccelerometerFragment()
+        ).commit();
+    }
+
     public static void closeDrawer(DrawerLayout drawerLayout) {
         //Close drawer layout
         //Check condition
@@ -56,6 +88,9 @@ public class NavigationActivity extends AppCompatActivity {
         //Recreate activity
         recreate();
     }
+
+
+
 
 //    public void ClickDashboard(View view){
 //        //Redirect activity to dashboard
