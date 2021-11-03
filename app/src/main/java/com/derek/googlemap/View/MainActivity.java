@@ -18,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -25,6 +26,7 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -60,6 +62,7 @@ import java.util.Arrays;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -68,8 +71,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.derek.googlemap.BitmapFillet;
 
+import com.derek.googlemap.Utility.*;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener {
+
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener, PopupMenu.OnMenuItemClickListener {
 
     @BindView(R.id.btn_add)
     Button btnAdd;
@@ -213,7 +218,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
 
-
+        ImageButton menu_button = (ImageButton) findViewById(R.id.map_menu);
+        menu_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showPopup(v);
+            }
+        });
 
     }
 
@@ -516,6 +526,44 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //Start activity
         activity.startActivity(intent);
+    }
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.map_menu);
+        popup.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.qr_scan:
+                getSupportFragmentManager().beginTransaction().replace(
+                        R.id.map_layout,
+                        new ScannerFragment()
+                ).commit();
+                break;
+            case R.id.qr_genr:
+                getSupportFragmentManager().beginTransaction().replace(
+                        R.id.map_layout,
+                        new GeneratorFragment()
+                ).commit();
+                break;
+            case R.id.environment:
+                getSupportFragmentManager().beginTransaction().replace(
+                        R.id.map_layout,
+                        new EnvironmentsFragment()
+                ).commit();
+                break;
+            case R.id.acc:
+                getSupportFragmentManager().beginTransaction().replace(
+                        R.id.map_layout,
+                        new AccelerometerFragment()
+                ).commit();
+                break;
+        }
+        return true;
     }
 }
 
