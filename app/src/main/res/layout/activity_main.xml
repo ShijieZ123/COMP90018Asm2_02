@@ -22,7 +22,7 @@
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="73dp"
             app:cameraTilt="30"
             app:uiRotateGestures="true"
             tools:context="com.example.goolgle.MainActivity" />
@@ -37,19 +37,66 @@
             android:visibility="gone" />
 
 
-        <RelativeLayout
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="130dp"-->
+<!--            android:layout_marginTop="540dp">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/btn_add"-->
+<!--                android:layout_width="100dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:background="@drawable/add_user_bg"-->
+<!--                android:text="+Add"-->
+<!--                android:textColor="@color/white" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/iv_refresh"-->
+<!--                android:layout_width="47dp"-->
+<!--                android:layout_height="47dp"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:layout_marginRight="75dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/logo2_menu" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/imageView"-->
+<!--                android:layout_width="130dp"-->
+<!--                android:layout_height="130dp"-->
+<!--                android:layout_alignParentLeft="true"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:layout_marginLeft="0dp"-->
+<!--                android:layout_marginBottom="0dp"-->
+<!--                android:src="@drawable/compass" />-->
+
+<!--        </RelativeLayout>-->
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="gone" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="130dp"
-            android:layout_marginTop="630dp">
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp">
 
             <Button
                 android:id="@+id/btn_add"
-                android:layout_width="83dp"
+                android:layout_width="87dp"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:background="@drawable/add_user_bg"
                 android:text="+Add"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
 
             <ImageView
                 android:id="@+id/iv_refresh"
@@ -57,9 +104,12 @@
                 android:layout_height="47dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
-                android:layout_marginRight="60dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/profile1" />
+                android:background="@drawable/profile1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_add"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -69,15 +119,10 @@
                 android:layout_centerInParent="true"
                 android:layout_marginLeft="0dp"
                 android:layout_marginBottom="0dp"
-                android:src="@drawable/compass" />
+                android:src="@drawable/compass"
+                tools:ignore="MissingConstraints" />
 
-        </RelativeLayout>
-
-        <ImageView
-            android:id="@+id/iv_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:visibility="gone" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </RelativeLayout>
 
