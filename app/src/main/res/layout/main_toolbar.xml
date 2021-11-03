@@ -2,16 +2,16 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="58dp"
+    android:layout_height="80dp"
     android:orientation="horizontal"
     android:padding="15dp"
     android:layout_gravity="center_horizontal">
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_height="35dp"
         android:onClick="ClickMenu"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:src="@drawable/ic_menu"/>
 
     <TextView
@@ -22,8 +22,8 @@
     <ImageButton
         android:id="@+id/map_menu"
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:layout_marginTop="5dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="15dp"
         android:background="@color/white"
         android:src="@drawable/ic_more" />
 
