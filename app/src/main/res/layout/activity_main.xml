@@ -1,38 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawer_layout"
-    android:fitsSystemWindows="true"
-    tools:context=".View.MainActivity"
-    >
 
-    <LinearLayout
+    android:orientation="vertical"
+    android:id="@+id/drawer_layout"
+    tools:context=".View.MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/map_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:id="@+id/toolbar"
-            android:elevation="4dp" />
 
-        <FrameLayout
+        <include layout="@layout/main_toolbar" />
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/frag_layout" />
+            android:layout_marginTop="53dp"
+            app:cameraTilt="30"
+            app:uiRotateGestures="true"
+            tools:context="com.example.goolgle.MainActivity" />
 
-    </LinearLayout>
+        <ProgressBar
+            android:id="@+id/myDataLoaderProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateBehavior="cycle"
+            android:visibility="gone" />
 
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="540dp">
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/add_user_bg"
+                android:text="+Add"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:id="@+id/iv_refresh"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="75dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/logo2_menu" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="0dp"
+                android:layout_marginBottom="0dp"
+                android:src="@drawable/compass" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:id="@+id/nav_view"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/drawer_menu" />
+        android:background="@android:color/white">
+
+        <include layout="@layout/main_nav_drawer" />
+
+    </RelativeLayout>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -19,10 +19,13 @@
         <activity android:name=".View.EditProfile">
 
         </activity>
+        <activity android:name=".View.ProfileActivity">
+
+        </activity>
         <activity android:name=".View.Register">
 
         </activity>
-        <activity android:name=".View.Login">
+        <activity android:name=".Utility.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -36,12 +39,9 @@
         </activity>
         <activity
             android:name=".View.UploadActivity"
-            android:label="添加用户"
+            android:label="Add users"
             android:parentActivityName="com.derek.googlemap.View.MainActivity" />
-        <activity
-            android:name=".View.DetailsActivity"
-            android:label="Details Page "
-            android:parentActivityName=".View.MainActivity" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

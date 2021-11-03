@@ -1,7 +1,9 @@
 package com.derek.googlemap.View;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -16,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -23,10 +26,12 @@ import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.derek.googlemap.R;
+import com.derek.googlemap.Utility.Login;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -57,13 +62,20 @@ import java.util.Arrays;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.derek.googlemap.BitmapFillet;
 
+import com.derek.googlemap.Utility.*;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener {
+
+
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener, PopupMenu.OnMenuItemClickListener {
 
     @BindView(R.id.btn_add)
     Button btnAdd;
@@ -76,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private ValueEventListener mDBListener;
     private GoogleMap mMap;
 
-    FirebaseAuth fAuth;
+    static FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     FirebaseUser user;
     StorageReference storageReference;
@@ -101,10 +113,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     long lastUpdatedTime = 0;
     float currentDegree = 0f;
 
+    //******************Navigation*******************
+    DrawerLayout drawerLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_items);
+        setContentView(R.layout.activity_main);
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -200,6 +215,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         magnetometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+
+        //******************Navigation*******************
+        //Assign variable
+        drawerLayout = findViewById(R.id.drawer_layout);
+
+        ImageButton menu_button = (ImageButton) findViewById(R.id.map_menu);
+        menu_button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                showPopup(v);
+            }
+        });
 
     }
 
@@ -346,7 +372,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             case R.id.iv_refresh:
 
-                intent = new Intent(this, EditProfile.class);
+//                intent = new Intent(this, EditProfile.class);
+                intent = new Intent(this, ProfileActivity.class);
+
                 startActivity(intent);
 
                 break;
@@ -405,6 +433,140 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         sensorManager.unregisterListener(this, accelerometerSensor);
         sensorManager.unregisterListener(this, magnetometerSensor);
 
+        //Close drawer
+        closeDrawer(drawerLayout);
+
+    }
+
+
+    //******************Navigation*******************
+
+    public void ClickMenu(View view){
+        //Open drawer
+        openDrawer(drawerLayout);
+    }
+
+    private static void openDrawer(DrawerLayout drawerLayout) {
+        //Open drawer layout
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
+
+    public void ClickLogo(View view){
+        //Close drawer
+        closeDrawer(drawerLayout);
+    }
+
+    public static void closeDrawer(DrawerLayout drawerLayout) {
+        //Close drawer layout
+        //Check condition
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            //When drawer is open
+            //Close drawer
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
+
+    public void ClickHome(View view){
+        //Recreate activity
+        recreate();
+    }
+
+//    public void ClickDashboard(View view){
+//        //Redirect activity to dashboard
+//        redirectActivity(this, );
+//    }
+//
+//    public void ClickAboutUs(View view){
+//        //Redirect activity to about us
+//        redirectActivity(this, .class);
+//    }
+
+    public void ClickLogout(View view){
+        //logout
+        logout(this);
+    }
+
+    public static void logout(Activity activity) {
+        //Initialize alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        //Set title
+        builder.setTitle("Logout");
+        //Set message
+        builder.setMessage("Are you sure you want to logout ?");
+        //Positive yes button
+        builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+//                //Finish activity
+//                activity.finishAffinity();
+//                //Exist app
+//                System.exit(0);
+
+                //sign out the account
+                fAuth.signOut();
+                //Redirect activity to Login
+                redirectActivity(activity, Login.class);
+
+            }
+        });
+
+        //Negative no button
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //Dismiss dialog
+                dialogInterface.dismiss();
+            }
+        });
+        //Show dialog
+        builder.show();
+    }
+
+    public static void redirectActivity(Activity activity, Class aClass) {
+        //Initialize intent
+        Intent intent = new Intent(activity, aClass);
+        //Set flag
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //Start activity
+        activity.startActivity(intent);
+    }
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        popup.setOnMenuItemClickListener(this);
+        popup.inflate(R.menu.map_menu);
+        popup.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.qr_scan:
+                getSupportFragmentManager().beginTransaction().replace(
+                        R.id.map_layout,
+                        new ScannerFragment()
+                ).addToBackStack(null).commit();
+                break;
+            case R.id.qr_genr:
+                getSupportFragmentManager().beginTransaction().replace(
+                        R.id.map_layout,
+                        new GeneratorFragment()
+                ).addToBackStack(null).commit();
+                break;
+            case R.id.environment:
+                getSupportFragmentManager().beginTransaction().replace(
+                        R.id.map_layout,
+                        new EnvironmentsFragment()
+                ).addToBackStack(null).commit();
+                break;
+            case R.id.acc:
+                getSupportFragmentManager().beginTransaction().replace(
+                        R.id.map_layout,
+                        new AccelerometerFragment()
+                ).addToBackStack(null).commit();
+                break;
+        }
+        return true;
     }
 }
 

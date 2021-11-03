@@ -1,4 +1,4 @@
-package com.derek.googlemap.View;
+package com.derek.googlemap.Utility;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.derek.googlemap.R;
+import com.derek.googlemap.View.MainActivity;
+import com.derek.googlemap.View.Register;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -78,13 +80,12 @@ public class Login extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
 
                 // authenticate the user
-
                 fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(Login.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         }else {
                             Toast.makeText(Login.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -99,7 +100,7 @@ public class Login extends AppCompatActivity {
         mCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Register.class));
+                startActivity(new Intent(getApplicationContext(), Register.class));
                 finish();
             }
         });

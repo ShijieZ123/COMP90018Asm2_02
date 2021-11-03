@@ -36,7 +36,6 @@
         android:id="@+id/profileImageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
-
         android:layout_marginTop="24dp" />
 
     <EditText
