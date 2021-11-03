@@ -1,11 +1,14 @@
 package com.derek.googlemap.View;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,6 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     ImageView icon;
     TextView name, email, gender,birthday,coordinate,phone;
+    Button editProfile;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     FirebaseUser user;
@@ -51,6 +55,7 @@ public class ProfileActivity extends AppCompatActivity {
         birthday = findViewById(R.id.birthday);
         coordinate = findViewById(R.id.coordinate);
         phone = findViewById(R.id.phone);
+        editProfile = findViewById(R.id.editProfile);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -84,6 +89,13 @@ public class ProfileActivity extends AppCompatActivity {
                 } else {
                     Log.d("Profile", "get failed with ", task.getException());
                 }
+            }
+        });
+
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, EditProfile.class);
+                startActivity(intent);
             }
         });
     }
