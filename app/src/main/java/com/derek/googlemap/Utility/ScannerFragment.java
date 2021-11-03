@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class ScannerFragment extends Fragment {
 
     private ScannerLiveView scanner;
     private TextView tvScanner;
+    private ImageButton back;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,6 +70,13 @@ public class ScannerFragment extends Fragment {
             @Override
             public void onCodeScanned(String data) {
                 tvScanner.setText(data);
+            }
+        });
+
+        back = (ImageButton) getActivity().findViewById(R.id.iv_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                getFragmentManager().popBackStackImmediate();
             }
         });
     }

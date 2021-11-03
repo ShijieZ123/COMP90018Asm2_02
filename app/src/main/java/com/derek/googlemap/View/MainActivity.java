@@ -542,25 +542,25 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 getSupportFragmentManager().beginTransaction().replace(
                         R.id.map_layout,
                         new ScannerFragment()
-                ).commit();
+                ).addToBackStack(null).commit();
                 break;
             case R.id.qr_genr:
                 getSupportFragmentManager().beginTransaction().replace(
                         R.id.map_layout,
                         new GeneratorFragment()
-                ).commit();
+                ).addToBackStack(null).commit();
                 break;
             case R.id.environment:
                 getSupportFragmentManager().beginTransaction().replace(
                         R.id.map_layout,
                         new EnvironmentsFragment()
-                ).commit();
+                ).addToBackStack(null).commit();
                 break;
             case R.id.acc:
                 getSupportFragmentManager().beginTransaction().replace(
                         R.id.map_layout,
                         new AccelerometerFragment()
-                ).commit();
+                ).addToBackStack(null).commit();
                 break;
         }
         return true;

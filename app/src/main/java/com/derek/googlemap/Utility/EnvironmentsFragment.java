@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ public class EnvironmentsFragment extends Fragment implements SensorEventListene
     private TextView temperatureView;
     private TextView pressureView;
     private TextView humidityView;
+    private ImageButton back;
     private SensorManager sensorManager;
     private Sensor temperature;
     private Sensor pressure;
@@ -51,6 +53,13 @@ public class EnvironmentsFragment extends Fragment implements SensorEventListene
         if (temperature == null) temperatureView.setText("Temperature sensor unavailable");
         if (pressure == null) pressureView.setText("Pressure sensor unavailable");
         if (humidity == null) humidityView.setText("Humidity sensor unavailable");
+
+        back = (ImageButton) getActivity().findViewById(R.id.iv_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                getFragmentManager().popBackStack();
+            }
+        });
     }
 
     @Override

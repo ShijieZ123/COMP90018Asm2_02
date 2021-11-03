@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ public class GeneratorFragment extends Fragment {
     private Button generateCodeBtn;
     private Bitmap bitmap;
     private QRGEncoder qrgEncoder;
+    private ImageButton back;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,6 +83,13 @@ public class GeneratorFragment extends Fragment {
                         Log.e("GeneratorActivity", e.toString());
                     }
                 }
+            }
+        });
+
+        back = (ImageButton) getActivity().findViewById(R.id.iv_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                getFragmentManager().popBackStackImmediate();
             }
         });
     }

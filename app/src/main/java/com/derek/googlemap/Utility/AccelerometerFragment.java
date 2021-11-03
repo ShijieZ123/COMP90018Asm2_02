@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ public class AccelerometerFragment extends Fragment implements SensorEventListen
     private TextView zView;
     private SensorManager sensorManager;
     private Sensor accelerometer;
+    private ImageButton back;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +60,13 @@ public class AccelerometerFragment extends Fragment implements SensorEventListen
             yView.setText("Y acceleration: " );
             zView.setText("Z acceleration: " );
         }
+
+        back = (ImageButton) getActivity().findViewById(R.id.iv_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                getFragmentManager().popBackStackImmediate();
+            }
+        });
     }
 
 
