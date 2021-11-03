@@ -59,7 +59,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginRight="75dp"
                 android:layout_marginBottom="10dp"
-                android:background="@mipmap/default_red" />
+                android:background="@drawable/logo2_menu" />
 
             <ImageView
                 android:id="@+id/imageView"

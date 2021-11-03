@@ -38,10 +38,6 @@
             android:name=".View.UploadActivity"
             android:label="Add users"
             android:parentActivityName="com.derek.googlemap.View.MainActivity" />
-        <activity
-            android:name=".View.DetailsActivity"
-            android:label="Details Page "
-            android:parentActivityName=".View.MainActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
