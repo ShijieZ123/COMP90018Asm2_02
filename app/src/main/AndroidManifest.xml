@@ -22,7 +22,7 @@
         <activity android:name=".View.Register">
 
         </activity>
-        <activity android:name=".View.Login">
+        <activity android:name=".Utility.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

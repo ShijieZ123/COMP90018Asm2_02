@@ -1,4 +1,4 @@
-package com.derek.googlemap.View;
+package com.derek.googlemap.Utility;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.derek.googlemap.R;
+import com.derek.googlemap.View.MainActivity;
+import com.derek.googlemap.View.Register;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -99,7 +101,7 @@ public class Login extends AppCompatActivity {
         mCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Register.class));
+                startActivity(new Intent(getApplicationContext(), Register.class));
                 finish();
             }
         });

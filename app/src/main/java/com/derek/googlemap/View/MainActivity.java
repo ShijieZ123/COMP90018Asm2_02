@@ -29,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.derek.googlemap.R;
+import com.derek.googlemap.Utility.Login;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -462,7 +463,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 //
 //    public void ClickAboutUs(View view){
 //        //Redirect activity to about us
-//        redirectActivity(this, );
+//        redirectActivity(this, .class);
 //    }
 
     public void ClickLogout(View view){
