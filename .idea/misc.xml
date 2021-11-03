@@ -3,45 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/drawable/add_user_bg.xml" value="0.34444444444444444" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/drawable/ic_acceleration.xml" value="0.5697916666666667" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/drawable/ic_email_black_24dp.xml" value="0.35" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/drawable/ic_environment.xml" value="0.5697916666666667" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/drawable/ic_launcher_background.xml" value="0.5111111111111111" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/drawable/ic_local_phone_black_24dp.xml" value="0.35" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/drawable/ic_logout.xml" value="0.5697916666666667" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/drawable/ic_map.xml" value="0.5697916666666667" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/drawable/ic_more.xml" value="0.5697916666666667" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/drawable/ic_person_black_24dp.xml" value="0.35" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_check.xml" value="0.5536458333333333" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_content.xml" value="0.2689969604863222" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_detail.xml" value="0.2621580547112462" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_edit_profile.xml" value="0.5" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_items.xml" value="0.2621580547112462" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_login.xml" value="0.5" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_main.xml" value="0.5" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_maps.xml" value="0.2689969604863222" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_navigation.xml" value="0.5536458333333333" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_register.xml" value="0.5" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_upload.xml" value="0.2621580547112462" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/fragment_accelerometer.xml" value="0.5536458333333333" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/fragment_environments.xml" value="0.5536458333333333" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/fragment_generator.xml" value="0.5" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/fragment_scanner.xml" value="0.5536458333333333" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/googlemap_marker_layout.xml" value="0.29528985507246375" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/main_nav_drawer.xml" value="0.4841485507246377" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/main_toolbar.xml" value="0.4841485507246377" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/row_model.xml" value="0.29528985507246375" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/switch_item.xml" value="0.5536458333333333" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/menu/drawer_menu.xml" value="0.5307692307692308" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.34739583333333335" />
+        <entry key="app/src/main/res/drawable/ic_dashboard.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/ic_dropdown_boarder.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/ic_email_black_24dp.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/ic_environment.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1859375" />
+        <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.12318840579710146" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1598731884057971" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.23882123447002024" />
+        <entry key="app/src/main/res/layout/main_nav_drawer.xml" value="0.13020833333333334" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android API 30 Platform" project-jdk-type="Android SDK" />
 </project>

@@ -19,6 +19,9 @@
         <activity android:name=".View.EditProfile">
 
         </activity>
+        <activity android:name=".View.ProfileActivity">
+
+        </activity>
         <activity android:name=".View.Register">
 
         </activity>
@@ -38,6 +41,7 @@
             android:name=".View.UploadActivity"
             android:label="Add users"
             android:parentActivityName="com.derek.googlemap.View.MainActivity" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

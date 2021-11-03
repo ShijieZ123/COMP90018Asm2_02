@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.derek.googlemap.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.zxing.WriterException;
 
 import androidmads.library.qrgenearator.QRGContents;
@@ -37,6 +38,8 @@ public class GeneratorFragment extends Fragment {
     private Bitmap bitmap;
     private QRGEncoder qrgEncoder;
     private ImageButton back;
+    FirebaseAuth fAuth;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,13 +51,14 @@ public class GeneratorFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        fAuth = FirebaseAuth.getInstance();
         generatorTV = getView().findViewById(R.id.tvGenerator);
         generatorIV = getView().findViewById(R.id.ivGenerator);
         generateCodeBtn = getView().findViewById(R.id.GenerateCodeBtn);
         generateCodeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String data = getMyID();
+                String data = "AddFriend#"+getMyID();
                 if (data.isEmpty()) {
                     Toast.makeText(getActivity(),
                             "Error retrieving user ID",
@@ -96,6 +100,6 @@ public class GeneratorFragment extends Fragment {
     }
 
     private String getMyID() {
-        return "MyID12345";
+        return fAuth.getCurrentUser().getUid();
     }
 }

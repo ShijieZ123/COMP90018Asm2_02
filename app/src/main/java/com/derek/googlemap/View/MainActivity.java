@@ -80,10 +80,12 @@ import com.derek.googlemap.Utility.*;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener, PopupMenu.OnMenuItemClickListener, LocationListener {
 
+
     @BindView(R.id.btn_add)
     Button btnAdd;
     @BindView(R.id.iv_refresh)
     ImageView ivRefresh;
+
     private ProgressBar mProgressBar;
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
@@ -267,7 +269,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     }
                 });
 
-
     }
 
     protected void onDestroy() {
@@ -377,14 +378,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         switch (view.getId()) {
             case R.id.btn_add:
 
-
                 intent = new Intent(this, UploadActivity.class);
                 intent.putExtra("friend", friend);
                 startActivity(intent);
-
                 break;
+
             case R.id.iv_refresh:
-                intent = new Intent(this, EditProfile.class);
+
+//                intent = new Intent(this, EditProfile.class);
+                intent = new Intent(this, ProfileActivity.class);
+
                 startActivity(intent);
 
                 break;

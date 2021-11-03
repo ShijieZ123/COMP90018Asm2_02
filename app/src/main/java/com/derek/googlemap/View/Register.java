@@ -10,10 +10,13 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +42,8 @@ import androidx.core.app.ActivityCompat;
 
 public class Register extends AppCompatActivity {
     public static final String TAG = "TAG";
-    EditText mFullName, mEmail, mPassword, mPhone;
+    EditText mFullName, mEmail, mPassword, mPhone, mBirthday;
+    Spinner mGender;
     Button mRegisterBtn;
     TextView mLoginBtn;
     FirebaseAuth fAuth;
@@ -53,6 +57,8 @@ public class Register extends AppCompatActivity {
     Location location;
     String userID;
 
+    private static final String[] genders = {"Male", "Female", "Other"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +71,12 @@ public class Register extends AppCompatActivity {
         mPhone = findViewById(R.id.phone);
         mRegisterBtn = findViewById(R.id.registerBtn);
         mLoginBtn = findViewById(R.id.createText);
+        mBirthday = findViewById(R.id.birthday);
+        mGender = findViewById(R.id.gender);
+
+        // Add dropdown list content genders into mGender
+        mGender.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, genders));
+//        mGender.setOnItemSelectedListener(this);
 
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
@@ -100,6 +112,8 @@ public class Register extends AppCompatActivity {
                 String password = mPassword.getText().toString().trim();
                 final String fullName = mFullName.getText().toString();
                 final String phone = mPhone.getText().toString();
+                final String birthday = mBirthday.getText().toString();
+                final String gender =  mGender.getSelectedItem().toString();
 
                 if (TextUtils.isEmpty(email)) {
                     mEmail.setError("Email is Required.");
@@ -113,6 +127,11 @@ public class Register extends AppCompatActivity {
 
                 if (password.length() < 6) {
                     mPassword.setError("Password Must be >= 6 Characters");
+                    return;
+                }
+
+                if(TextUtils.isEmpty(birthday)){
+                    mBirthday.setError("Birthday is required");
                     return;
                 }
 
@@ -139,15 +158,18 @@ public class Register extends AppCompatActivity {
                             });
 
                             Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
-                            userID = fAuth.getCurrentUser().getUid();
-                            DocumentReference documentReference = fStore.collection("users").document(userID);
+                            DocumentReference documentReference = fStore.collection("users").document(fuser.getUid());
                             Map<String, Object> user = new HashMap<>();
                             user.put("fName", fullName);
                             user.put("email", email);
                             user.put("phone", phone);
+                            user.put("birthday",birthday);
+                            user.put("gender",gender);
                             user.put("lati", location.getLatitude());
                             user.put("loti", location.getLongitude());
-                            user.put("friends", "444444");
+//                            user.put("lati", 0.0);
+//                            user.put("loti", 0.0);
+                            user.put("friends", "");
                             user.put("imageUrl", "https://img1.baidu.com/it/u=1661289163,995545644&fm=26&fmt=auto");
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
