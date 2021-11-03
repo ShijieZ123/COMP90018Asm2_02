@@ -54,7 +54,9 @@ dependencies {
     implementation 'com.google.maps.android:android-maps-utils:0.5+'
 
     implementation 'com.google.android.gms:play-services-location:18.0.0'
-
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
+    implementation ('eu.livotov.labs.android:CAMView:2.0.1@aar') {transitive=true}
 }
 
+apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'

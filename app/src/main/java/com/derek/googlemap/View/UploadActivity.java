@@ -48,7 +48,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.derek.googlemap.FileUtils;
-import com.derek.googlemap.Model.Teacher;
+import com.derek.googlemap.Model.User;
 
 public class UploadActivity extends AppCompatActivity {
 
@@ -223,7 +223,7 @@ public class UploadActivity extends AppCompatActivity {
                                     String imageUrl = uri.toString();
                                     //createNewPost(imageUrl);
 
-                                    Teacher upload = new Teacher(nameEditText.getText().toString().trim(),
+                                    User upload = new User(nameEditText.getText().toString().trim(),
                                             imageUrl,
                                             etJingdu.getText().toString(), etWeidu.getText().toString());
 
