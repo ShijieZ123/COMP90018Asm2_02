@@ -213,6 +213,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
 
+
+
     }
 
     private void findFriends() {
