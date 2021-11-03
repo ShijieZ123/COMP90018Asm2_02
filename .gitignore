@@ -10,3 +10,4 @@
 /.idea
 .properties
 ./build
+/.idea/*
