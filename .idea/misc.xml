@@ -11,15 +11,18 @@
         <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_check.xml" value="0.5536458333333333" />
         <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_content.xml" value="0.2689969604863222" />
         <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_detail.xml" value="0.2621580547112462" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_edit_profile.xml" value="0.2621580547112462" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_edit_profile.xml" value="0.5" />
         <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_items.xml" value="0.2621580547112462" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_login.xml" value="0.5" />
         <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_maps.xml" value="0.2689969604863222" />
         <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_navigation.xml" value="0.5536458333333333" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_register.xml" value="0.2621580547112462" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_register.xml" value="0.5" />
         <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/activity_upload.xml" value="0.2621580547112462" />
-        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/fragment_generator.xml" value="0.2621580547112462" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/fragment_accelerometer.xml" value="0.5536458333333333" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/fragment_environments.xml" value="0.5536458333333333" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/fragment_generator.xml" value="0.5" />
+        <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/fragment_scanner.xml" value="0.5536458333333333" />
         <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/googlemap_marker_layout.xml" value="0.29528985507246375" />
         <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/main_nav_drawer.xml" value="0.4841485507246377" />
         <entry key="..\:/Users/Shijie Zhou/AndroidStudioProjects/COMP90018Asm2_02/app/src/main/res/layout/main_toolbar.xml" value="0.4841485507246377" />

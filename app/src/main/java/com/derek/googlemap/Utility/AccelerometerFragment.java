@@ -15,9 +15,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -71,6 +73,8 @@ public class AccelerometerFragment extends Fragment implements SensorEventListen
             yView.setText("Y acceleration: " + accY + " m/s");
             zView.setText("Z acceleration: " + accZ + " m/s");
         });
+
+
     }
 
     @Override
