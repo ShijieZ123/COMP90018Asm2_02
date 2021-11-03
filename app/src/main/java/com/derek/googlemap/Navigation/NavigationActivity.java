@@ -46,33 +46,33 @@ public class NavigationActivity extends AppCompatActivity {
         closeDrawer(drawerLayout);
     }
 
-    public void ClickQrGenerate(View view){
-        getSupportFragmentManager().beginTransaction().replace(
-                R.id.map_layout,
-                new GeneratorFragment()
-        ).commit();
-    }
-
-    public void ClickQrScanner(View view){
-        getSupportFragmentManager().beginTransaction().replace(
-                R.id.map_layout,
-                new ScannerFragment()
-        ).commit();
-    }
-
-    public void ClickEnvironment(View view){
-        getSupportFragmentManager().beginTransaction().replace(
-                R.id.map_layout,
-                new EnvironmentsFragment()
-        ).commit();
-    }
-
-    public void ClickAcceleration(View view){
-        getSupportFragmentManager().beginTransaction().replace(
-                R.id.map_layout,
-                new AccelerometerFragment()
-        ).commit();
-    }
+//    public void ClickQrGenerate(View view){
+//        getSupportFragmentManager().beginTransaction().replace(
+//                R.id.map_layout,
+//                new GeneratorFragment()
+//        ).commit();
+//    }
+//
+//    public void ClickQrScanner(View view){
+//        getSupportFragmentManager().beginTransaction().replace(
+//                R.id.map_layout,
+//                new ScannerFragment()
+//        ).commit();
+//    }
+//
+//    public void ClickEnvironment(View view){
+//        getSupportFragmentManager().beginTransaction().replace(
+//                R.id.map_layout,
+//                new EnvironmentsFragment()
+//        ).commit();
+//    }
+//
+//    public void ClickAcceleration(View view){
+//        getSupportFragmentManager().beginTransaction().replace(
+//                R.id.map_layout,
+//                new AccelerometerFragment()
+//        ).commit();
+//    }
 
     public static void closeDrawer(DrawerLayout drawerLayout) {
         //Close drawer layout

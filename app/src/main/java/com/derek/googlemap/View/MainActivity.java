@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private ValueEventListener mDBListener;
     private GoogleMap mMap;
 
-    FirebaseAuth fAuth;
+    static FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     FirebaseUser user;
     StorageReference storageReference;
@@ -471,7 +471,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         logout(this);
     }
 
-    public void logout(Activity activity) {
+    public static void logout(Activity activity) {
         //Initialize alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         //Set title

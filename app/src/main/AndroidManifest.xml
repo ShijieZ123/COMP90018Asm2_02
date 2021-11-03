@@ -36,7 +36,7 @@
         </activity>
         <activity
             android:name=".View.UploadActivity"
-            android:label="添加用户"
+            android:label="Add users"
             android:parentActivityName="com.derek.googlemap.View.MainActivity" />
         <activity
             android:name=".View.DetailsActivity"

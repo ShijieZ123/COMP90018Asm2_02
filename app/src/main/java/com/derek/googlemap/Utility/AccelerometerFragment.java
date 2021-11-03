@@ -1,6 +1,12 @@
 package com.derek.googlemap.Utility;
 
+import static com.derek.googlemap.View.MainActivity.logout;
+
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -12,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import com.derek.googlemap.R;
@@ -22,7 +30,6 @@ public class AccelerometerFragment extends Fragment implements SensorEventListen
     private TextView zView;
     private SensorManager sensorManager;
     private Sensor accelerometer;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,5 +88,6 @@ public class AccelerometerFragment extends Fragment implements SensorEventListen
     public void onPause() {
         super.onPause();
         sensorManager.unregisterListener(this);
+
     }
 }
