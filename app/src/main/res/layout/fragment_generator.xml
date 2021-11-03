@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Utility.GeneratorFragment">
 
     <RelativeLayout
@@ -46,7 +47,6 @@
             android:text="Generated QR Code will appear here"
             android:textAlignment="center"
             android:padding="4dp"
-            android:textColor="@drawable/ic_person_black_24dp"
             />
         <ImageView
             android:layout_width="250dp"
