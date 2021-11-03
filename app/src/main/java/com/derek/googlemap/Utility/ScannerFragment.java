@@ -76,6 +76,7 @@ public class ScannerFragment extends Fragment {
         back = (ImageButton) getActivity().findViewById(R.id.iv_back);
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                getActivity().recreate();
                 getFragmentManager().popBackStackImmediate();
             }
         });

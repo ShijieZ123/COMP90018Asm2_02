@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/ic_dashboard.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/ic_dropdown_boarder.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/ic_email_black_24dp.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/ic_environment.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1859375" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1859375" />
+        <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.12318840579710146" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1598731884057971" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.23882123447002024" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android API 30 Platform" project-jdk-type="Android SDK" />
+</project>
