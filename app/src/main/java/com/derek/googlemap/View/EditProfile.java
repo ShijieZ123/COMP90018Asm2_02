@@ -13,9 +13,11 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.derek.googlemap.R;
@@ -41,12 +43,15 @@ import com.jph.takephoto.model.TResult;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 import javax.annotation.Nullable;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import de.hdodenhof.circleimageview.CircleImageView;
 import com.derek.googlemap.FileUtils;
@@ -58,7 +63,8 @@ public class EditProfile extends TakePhotoActivity {
     CharSequence[] items = new CharSequence[]{"Take photo", "Album"};
 
     public static final String TAG = "TAG";
-    EditText profileFullName, profileEmail, profilePhone;
+    EditText profileFullName, profileEmail,profileBirthday, profilePhone;
+    Spinner profileGender;
     CircleImageView profileImageView;
     ImageView back;
     Button saveBtn;
@@ -73,6 +79,8 @@ public class EditProfile extends TakePhotoActivity {
     private Uri imageUri; //global variable when taking picture
 
     private StorageTask mUploadTask;
+
+    private static final String[] genders = {"Male", "Female", "Other"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,23 +108,29 @@ public class EditProfile extends TakePhotoActivity {
         back = findViewById(R.id.iv_back);
         profileFullName = findViewById(R.id.profileFullName);
         profileEmail = findViewById(R.id.profileEmailAddress);
-        profilePhone = findViewById(R.id.profilePhoneNo);
+        profilePhone = findViewById(R.id.profilePhone);
+        profileGender = findViewById(R.id.profileGender);
+        profileGender.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, genders));
+        profileBirthday = findViewById(R.id.profileBirthday);
         profileImageView = findViewById(R.id.profileImageView);
         saveBtn = findViewById(R.id.saveProfileInfo);
+
 
         String userId = fAuth.getCurrentUser().getUid();
 
         DocumentReference documentReference = fStore.collection("users").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 if (documentSnapshot.exists()) {
                     profilePhone.setText(documentSnapshot.getString("phone"));
                     profileFullName.setText(documentSnapshot.getString("fName"));
                     profileEmail.setText(documentSnapshot.getString("email"));
+                    profileBirthday.setText(documentSnapshot.getString("birthday"));
+                    int genderSelection = Arrays.asList(genders).indexOf(documentSnapshot.getString("gender"));
+                    profileGender.setSelection(genderSelection);
                     Picasso.with(EditProfile.this).load(documentSnapshot.getString("imageUrl")).placeholder(R.mipmap.default_head).error(R.mipmap.default_head).into(profileImageView);
-
-
                 } else {
                     Log.d("tag", "onEvent: Document do not exists");
                 }
@@ -188,15 +202,16 @@ public class EditProfile extends TakePhotoActivity {
                     return;
                 }
 
-                final String email = profileEmail.getText().toString();
                 user.updateEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         DocumentReference docRef = fStore.collection("users").document(user.getUid());
                         Map<String, Object> edited = new HashMap<>();
-                        edited.put("email", email);
+                        edited.put("email", profileEmail.getText().toString());
                         edited.put("fName", profileFullName.getText().toString());
                         edited.put("phone", profilePhone.getText().toString());
+                        edited.put("birthday",profileBirthday.getText().toString());
+                        edited.put("gender",profileGender.getSelectedItem().toString());
                         docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {

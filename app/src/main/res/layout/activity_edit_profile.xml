@@ -63,15 +63,42 @@
         android:inputType="textEmailAddress"
         android:textSize="15dp" />
 
+<!--    -->
+    <Spinner
+        android:id="@+id/profileGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:padding="10dp"
+        android:textSize="14sp"
+        android:background="@drawable/ic_dropdown_boarder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:spinnerMode="dropdown" />
+
     <EditText
-        android:id="@+id/profilePhoneNo"
+        android:id="@+id/profileBirthday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
-        android:hint="Phone"
+        android:hint="Your Birthday"
+        android:inputType="phone"
+        android:textSize="15dp" />
+
+    <EditText
+        android:id="@+id/profilePhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:hint="Your Phone Number"
         android:inputType="phone"
         android:textSize="15dp" />
 

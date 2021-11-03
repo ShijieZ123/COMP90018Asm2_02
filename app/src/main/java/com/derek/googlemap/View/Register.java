@@ -58,7 +58,6 @@ public class Register extends AppCompatActivity {
     String userID;
 
     private static final String[] genders = {"Male", "Female", "Other"};
-    private String gender = genders[0];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
