@@ -7,8 +7,8 @@
 .externalNativeBuild
 *.properties
 /build
-gradle.properties
-local.properties
+/gradle.properties
+/local.properties
 /.idea/*
 /gradlew
 /gradlew.bat
