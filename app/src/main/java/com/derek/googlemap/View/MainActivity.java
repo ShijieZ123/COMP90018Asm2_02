@@ -1,10 +1,12 @@
 package com.derek.googlemap.View;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -67,12 +69,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 import com.derek.googlemap.BitmapFillet;
 
 import com.derek.googlemap.Utility.*;
@@ -190,7 +194,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Create a reference to the cities collection
 
 
-
         DocumentReference documentReference = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -226,13 +229,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Assign variable
         drawerLayout = findViewById(R.id.drawer_layout);
 
-        // text show current speed
+        // show current speed
         speed = (TextView) findViewById(R.id.speed);
-        LocationManager lm =(LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 1, this);
+        LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+        }
         this.onLocationChanged(null);
 
-        // menu button click listener
+        // click listener on menu button
         ImageButton menu_button = (ImageButton) findViewById(R.id.map_menu);
         menu_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -240,14 +245,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        // friends list test button
-        Button button = findViewById(R.id.friends);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), FriendListActivity.class);
-                startActivity(intent);
-            }
-        });
+//        // friends list test button
+//        Button button = findViewById(R.id.friends);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), FriendListActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 

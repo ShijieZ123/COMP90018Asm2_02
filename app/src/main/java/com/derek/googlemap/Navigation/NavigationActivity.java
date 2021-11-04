@@ -92,7 +92,7 @@ public class NavigationActivity extends AppCompatActivity {
     }
 
     public void CLickFriendsList(View view){
-        Intent intent = new Intent(this, FriendListActivity.class);
+        Intent intent = new Intent(getApplicationContext(), FriendListActivity.class);
         startActivity(intent);
     }
 
