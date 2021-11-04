@@ -11,20 +11,6 @@ import android.provider.MediaStore;
 
 public class FileUtils {
 
-    public static double calculateDistance(double lati1, double loti1, double lati2, double loti2){
-        double x1 = (Math.PI/180)*lati1;
-        double x2 = (Math.PI/180)*lati2;
-        double y1 = (Math.PI/180)*loti2;
-        double y2 = (Math.PI/180)*lati2;
-
-        double R = 6371;// radius of the Earth
-        double distance = Math.acos(Math.sin(x1)*Math.sin(x2)+Math.cos(x1)*Math.cos(x2)
-                * Math.cos(y2-y1))
-                * R;
-
-        return distance*1000;
-    }
-
     public static String getRealPathFromUri(Context context, Uri uri) {
         int sdkVersion = Build.VERSION.SDK_INT;
         if (sdkVersion >= 19) { // api >= 19
