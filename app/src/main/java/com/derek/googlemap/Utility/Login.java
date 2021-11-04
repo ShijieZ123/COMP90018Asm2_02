@@ -101,7 +101,6 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Register.class));
-                finish();
             }
         });
 
@@ -147,13 +146,9 @@ public class Login extends AppCompatActivity {
             }
         });
 
-
-
-
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.BLUETOOTH_ADMIN},
                 100);
-
 
     }
 }
