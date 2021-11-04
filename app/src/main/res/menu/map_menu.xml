@@ -3,6 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/add_friend"
+        android:title="Add Friend"
+        app:actionLayout="@layout/switch_item" />
+
+    <item
         android:id="@+id/qr_scan"
         android:title="Scan QR Code"
         app:actionLayout="@layout/switch_item" />
@@ -10,12 +15,5 @@
         android:id="@+id/qr_genr"
         android:title="Generate QR Code"
         app:actionLayout="@layout/switch_item" />
-    <item
-        android:id="@+id/environment"
-        android:title="Environment"
-        app:actionLayout="@layout/switch_item" />
-    <item
-        android:id="@+id/acc"
-        android:title="Moving States"
-        app:actionLayout="@layout/switch_item" />
+
 </menu>
