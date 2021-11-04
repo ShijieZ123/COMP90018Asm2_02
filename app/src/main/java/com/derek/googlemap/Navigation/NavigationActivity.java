@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -92,6 +93,7 @@ public class NavigationActivity extends AppCompatActivity {
 
     public void CLickFriendsList(View view){
         Intent intent = new Intent(this, FriendListActivity.class);
+        startActivity(intent);
     }
 
 
