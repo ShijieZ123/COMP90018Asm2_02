@@ -16,6 +16,7 @@ import com.derek.googlemap.Utility.AccelerometerFragment;
 import com.derek.googlemap.Utility.EnvironmentsFragment;
 import com.derek.googlemap.Utility.GeneratorFragment;
 import com.derek.googlemap.Utility.ScannerFragment;
+import com.derek.googlemap.View.FriendListActivity;
 
 public class NavigationActivity extends AppCompatActivity {
     //Initialize variable
@@ -87,6 +88,10 @@ public class NavigationActivity extends AppCompatActivity {
     public void ClickHome(View view){
         //Recreate activity
         recreate();
+    }
+
+    public void CLickFriendsList(View view){
+        Intent intent = new Intent(this, FriendListActivity.class);
     }
 
 
