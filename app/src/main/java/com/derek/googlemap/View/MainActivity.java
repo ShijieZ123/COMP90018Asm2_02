@@ -269,13 +269,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
         // friends list test button
-        Button button = findViewById(R.id.friends);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), FriendListActivity.class);
-                startActivity(intent);
-            }
-        });
+//        Button button = findViewById(R.id.friends);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), FriendListActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         //direction
         listPoints = new ArrayList<LatLng>();
@@ -567,6 +567,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         closeDrawer(drawerLayout);
     }
 
+    public void CLickFriendsList(View view){
+        Intent intent = new Intent(this, FriendListActivity.class);
+        startActivity(intent);
+    }
+
     public static void closeDrawer(DrawerLayout drawerLayout) {
         //Close drawer layout
         //Check condition
@@ -582,15 +587,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         recreate();
     }
 
-//    public void ClickDashboard(View view){
-//        //Redirect activity to dashboard
-//        redirectActivity(this, );
-//    }
-//
-//    public void ClickAboutUs(View view){
-//        //Redirect activity to about us
-//        redirectActivity(this, .class);
-//    }
+    public void CLickProfile(View view){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+    }
 
     public void ClickLogout(View view){
         //logout
@@ -661,17 +661,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 i = new Intent(MainActivity.this, GeneratorActivity.class);
                 startActivity(i);
                 break;
-            case R.id.environment:
-                getSupportFragmentManager().beginTransaction().replace(
-                        R.id.map_layout,
-                        new EnvironmentsFragment()
-                ).addToBackStack(null).commit();
-                break;
-            case R.id.acc:
-                getSupportFragmentManager().beginTransaction().replace(
-                        R.id.map_layout,
-                        new AccelerometerFragment()
-                ).addToBackStack(null).commit();
+            case R.id.add_friend:
+                intent = new Intent(MainActivity.this, UploadActivity.class);
+                intent.putExtra("friend", friend);
+                startActivity(intent);
                 break;
         }
         return true;
@@ -680,12 +673,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onLocationChanged(@NonNull Location location) {
         if (location==null){
-            // if you can't get speed because reasons :)
-            this.speed.setText("00 km/h");
+            this.speed.setText("0 km/h");
         }
         else{
-            //int speed=(int) ((location.getSpeed()) is the standard which returns meters per second. In this example i converted it to kilometers per hour
-
             int speed=(int) ((location.getSpeed()*3600)/1000);
             this.speed.setText(speed+" km/h");
         }
@@ -697,17 +687,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
-
     @Override
     public void onProviderEnabled(String provider) {
         // TODO Auto-generated method stub
 
     }
 
-
     @Override
     public void onProviderDisabled(String provider) {
-
 
     }
 }

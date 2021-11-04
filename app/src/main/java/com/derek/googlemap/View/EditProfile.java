@@ -216,6 +216,7 @@ public class EditProfile extends TakePhotoActivity {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(EditProfile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+
                                 finish();
                             }
                         });
@@ -230,12 +231,12 @@ public class EditProfile extends TakePhotoActivity {
 
             }
         });
-
-        profileEmail.setText(email);
-        profileFullName.setText(fullName);
-        profilePhone.setText(phone);
-
-        Log.d(TAG, "onCreate: " + fullName + " " + email + " " + phone);
+//
+//        profileEmail.setText(email);
+//        profileFullName.setText(fullName);
+//        profilePhone.setText(phone);
+//
+//        Log.d(TAG, "onCreate: " + fullName + " " + email + " " + phone);
     }
 
 

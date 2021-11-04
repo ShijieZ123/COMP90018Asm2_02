@@ -36,7 +36,6 @@ public class GeneratorActivity extends AppCompatActivity {
 
     private TextView generatorTV;
     private ImageView generatorIV;
-    private Button generateCodeBtn;
     private Bitmap bitmap;
     private QRGEncoder qrgEncoder;
     private ImageButton back;
@@ -50,41 +49,35 @@ public class GeneratorActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         generatorTV = findViewById(R.id.tvGenerator);
         generatorIV = findViewById(R.id.ivGenerator);
-        generateCodeBtn = findViewById(R.id.GenerateCodeBtn);
-        generateCodeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String data = getMyID();
-                if (data.isEmpty()) {
-                    Toast.makeText(GeneratorActivity.this,
-                            "Error retrieving user ID",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        String data = getMyID();
+        if (data.isEmpty()) {
+            Toast.makeText(this,
+                    "Error retrieving user ID",
+                    Toast.LENGTH_SHORT).show();
+        }
+        else {
+            WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
-                    Display display = manager.getDefaultDisplay();
+            Display display = manager.getDefaultDisplay();
 
-                    Point point = new Point();
-                    display.getSize(point);
+            Point point = new Point();
+            display.getSize(point);
 
-                    int width = point.x;
-                    int height = point.y;
+            int width = point.x;
+            int height = point.y;
 
-                    int dimen = width < height ? width : height;
-                    dimen = dimen * 3 / 4;
+            int dimen = width < height ? width : height;
+            dimen = dimen * 3 / 4;
 
-                    qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT, dimen);
-                    try {
-                        generatorTV.setText("");
-                        bitmap = qrgEncoder.encodeAsBitmap();
-                        generatorIV.setImageBitmap(bitmap);
-                    } catch (WriterException e) {
-                        Log.e("GeneratorActivity", e.toString());
-                    }
-                }
+            qrgEncoder = new QRGEncoder(data, null, QRGContents.Type.TEXT, dimen);
+            try {
+                generatorTV.setText("");
+                bitmap = qrgEncoder.encodeAsBitmap();
+                generatorIV.setImageBitmap(bitmap);
+            } catch (WriterException e) {
+                Log.e("GeneratorActivity", e.toString());
             }
-        });
+        }
 
         back = findViewById(R.id.iv_back);
         back.setOnClickListener(new View.OnClickListener() {
