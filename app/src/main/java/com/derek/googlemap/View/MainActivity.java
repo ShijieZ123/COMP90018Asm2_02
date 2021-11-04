@@ -579,18 +579,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
+        Intent i;
         switch (item.getItemId()) {
             case R.id.qr_scan:
-                getSupportFragmentManager().beginTransaction().replace(
-                        R.id.map_layout,
-                        new ScannerFragment()
-                ).addToBackStack(null).commit();
+                i = new Intent(MainActivity.this, ScannerActivity.class);
+                startActivity(i);
                 break;
             case R.id.qr_genr:
-                getSupportFragmentManager().beginTransaction().replace(
-                        R.id.map_layout,
-                        new GeneratorFragment()
-                ).addToBackStack(null).commit();
+                i = new Intent(MainActivity.this, GeneratorActivity.class);
+                startActivity(i);
                 break;
             case R.id.environment:
                 getSupportFragmentManager().beginTransaction().replace(

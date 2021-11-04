@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -26,7 +27,7 @@ import static android.Manifest.permission.CAMERA;
 import com.derek.googlemap.R;
 import com.derek.googlemap.View.ProfileActivity;
 
-public class ScannerFragment extends Fragment {
+public class ScannerActivity extends AppCompatActivity {
 
     /* QR code scanner */
     private ScannerLiveView scanner;
@@ -34,17 +35,11 @@ public class ScannerFragment extends Fragment {
     private ImageButton back;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_scanner, container, false);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_scanner);
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        scanner = getView().findViewById(R.id.codeScanner);
+        scanner = findViewById(R.id.codeScanner);
         //tvScanner = getView().findViewById(R.id.tvScanner);
 
         /* request camera permission if not already granted */
@@ -58,7 +53,7 @@ public class ScannerFragment extends Fragment {
         }
 
         /* define scanner behaviour; we only really want particular behaviour
-        *  for when something is scanned */
+         *  for when something is scanned */
         scanner.setScannerViewEventListener(new ScannerLiveView.ScannerViewEventListener() {
             @Override
             public void onScannerStarted(ScannerLiveView scanner) {
@@ -81,8 +76,8 @@ public class ScannerFragment extends Fragment {
                 //tvScanner.setText(data);
 
                 /* QR code scanned should be an encrypted user ID
-                *  pass the user ID into the profile activity to view */
-                Intent i = new Intent(getActivity(), ProfileActivity.class);
+                 *  pass the user ID into the profile activity to view */
+                Intent i = new Intent(ScannerActivity.this, ProfileActivity.class);
                 Bundle b = new Bundle();
                 b.putString("uid", data);
                 i.putExtras(b);
@@ -90,23 +85,23 @@ public class ScannerFragment extends Fragment {
             }
         });
 
-        back = (ImageButton) getActivity().findViewById(R.id.iv_back);
+        back = findViewById(R.id.iv_back);
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                getActivity().recreate();
-                getFragmentManager().popBackStackImmediate();
+                finish();
             }
         });
     }
 
     /* occurs if the scanned data is not a valid user ID and no corresponding
-    *  document was found in the firebase database */
+     *  document was found in the firebase database */
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         Log.d("Scanner", "result returned, resultCode: " + resultCode);
         int ERROR_CODE = 1;
         if (resultCode == ERROR_CODE) {
-            Toast.makeText(getActivity(), "Error retrieving user data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error retrieving user data", Toast.LENGTH_SHORT);
         }
     }
 
@@ -130,14 +125,14 @@ public class ScannerFragment extends Fragment {
     /* only camera permission is required for scanning so check if it has been granted */
     private boolean permissionGranted() {
         int cameraPermission = ContextCompat.checkSelfPermission(
-                getActivity().getApplicationContext(),
+                getApplicationContext(),
                 CAMERA
         );
         return cameraPermission == PackageManager.PERMISSION_GRANTED;
     }
     private void requestPermission() {
         int PERMISSION_REQUEST_CODE = 200;
-        ActivityCompat.requestPermissions(getActivity(), new String[]{CAMERA}, PERMISSION_REQUEST_CODE);
+        ActivityCompat.requestPermissions(this, new String[]{CAMERA}, PERMISSION_REQUEST_CODE);
     }
 
     @Override
@@ -146,9 +141,9 @@ public class ScannerFragment extends Fragment {
         if (grantResults.length > 0) {
             boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
             if (cameraAccepted) {
-                Toast.makeText(getActivity(), "Permission granted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT);
             } else {
-                Toast.makeText(getActivity(), "Permission denied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT);
             }
         }
     }
