@@ -240,6 +240,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+        // friends list test button
+        Button button = findViewById(R.id.friends);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), FriendListActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void findFriends() {
