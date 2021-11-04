@@ -25,15 +25,16 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-public class FriendListActivity extends AppCompatActivity {
+public class FriendListActivity extends AppCompatActivity{
 
     ListView friendListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_friendlist);
 
         friendListView = findViewById(R.id.friendlist);
 
@@ -45,17 +46,30 @@ public class FriendListActivity extends AppCompatActivity {
                 String[] friendUids = documentSnapshot.getString("friends").split(",");
                 ArrayList<Friend> friends = new ArrayList<>();
                 for (String uid: friendUids){
+                    Log.d("TEST ON SUCCESS", uid);
+                    Log.e("TEST ON SUCCESS", uid);
+
+                    if(uid.length()==0){
+                        continue;
+                    }
                     DocumentReference friendDoc = FirebaseFirestore.getInstance().collection("users").document(uid);
                     friendDoc.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Friend friend = documentSnapshot.toObject(Friend.class);
+                            Log.d("TEST ON friend name", friend.getfName());
                             friends.add(friend);
+
+                            FriendAdapter friendAdapter = new FriendAdapter(FriendListActivity.this,friends);
+                            friendListView.setAdapter(friendAdapter);
+
                         }
                     });
                 }
-                // display friends
 
+
+                // display friends
+                Log.d("TEST ON friend number", String.valueOf(friends.size()));
                 FriendAdapter friendAdapter = new FriendAdapter(FriendListActivity.this,friends);
                 friendListView.setAdapter(friendAdapter);
             }
