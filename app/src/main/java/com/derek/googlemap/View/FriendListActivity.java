@@ -74,8 +74,6 @@ public class FriendListActivity extends AppCompatActivity{
                             Friend friend = doc.toObject(Friend.class);
                             friends.add(friend);
                             Log.d("TEST ON friend name", friend.getfName());
-
-
                         }
                         Log.d("TEST ON friend number", String.valueOf(friends.size()));
 
@@ -98,6 +96,8 @@ public class FriendListActivity extends AppCompatActivity{
                                 intent.putExtra("phone", selectedFriend.getPhone());
                                 intent.putExtra("lati", selectedFriend.getLati());
                                 intent.putExtra("loti", selectedFriend.getLoti());
+                                intent.putExtra("mFriends",splitedFriends);
+                                intent.putExtra("uidToDelete",docs.get(i).getId());
 
 
                                 startActivity(intent);
