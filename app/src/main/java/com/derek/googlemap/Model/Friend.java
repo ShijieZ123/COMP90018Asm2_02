@@ -12,6 +12,10 @@ public class Friend {
     private String friends;
     private String imageUrl;
 
+    public Friend(){
+        //empty constructor needed
+    }
+
     public Friend(String fName, double lati, double loti, String birthday, String email, String gender, String phone, String friends, String imageUrl) {
         this.fName = fName;
         this.lati = lati;
