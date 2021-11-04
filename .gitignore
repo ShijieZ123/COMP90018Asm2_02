@@ -9,4 +9,4 @@
 *.properties
 ./build
 /.idea/*
-
+local.*
