@@ -35,6 +35,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.derek.googlemap.R;
 import com.derek.googlemap.Utility.Login;
@@ -80,6 +81,9 @@ import butterknife.OnClick;
 import com.derek.googlemap.BitmapFillet;
 
 import com.derek.googlemap.Utility.*;
+
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener, PopupMenu.OnMenuItemClickListener, LocationListener {
@@ -232,9 +236,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // show current speed
         speed = (TextView) findViewById(R.id.speed);
         LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+
+        if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {ACCESS_FINE_LOCATION}, 200);
         }
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {ACCESS_COARSE_LOCATION}, 200);
+        }
+        if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Error: app requires permission to use location", Toast.LENGTH_SHORT);
+        }
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 1, this);
         this.onLocationChanged(null);
 
         // click listener on menu button
@@ -513,7 +525,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         logout(this);
     }
 
-    public static void logout(Activity activity) {
+    public void logout(Activity activity) {
         //Initialize alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         //Set title
@@ -533,7 +545,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 fAuth.signOut();
                 //Redirect activity to Login
                 redirectActivity(activity, Login.class);
-
+                finish();
             }
         });
 

@@ -6,11 +6,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,6 +45,8 @@ public class ProfileActivity extends AppCompatActivity {
     FirebaseUser user;
     StorageReference storageReference;
 
+    private boolean isMyProfile = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,13 +62,23 @@ public class ProfileActivity extends AppCompatActivity {
         editProfile = findViewById(R.id.editProfile);
 
         fAuth = FirebaseAuth.getInstance();
+        String Uid = fAuth.getCurrentUser().getUid();
         fStore = FirebaseFirestore.getInstance();
         user = fAuth.getCurrentUser();
         storageReference = FirebaseStorage.getInstance().getReference();
 
+        Bundle b = getIntent().getExtras();
+        if (b != null) {
+            String argUid = b.getString("uid");
+            if (!argUid.equals(Uid)) {
+                isMyProfile = false;
+                Uid = argUid;
+            }
+        }
+
         Glide.with(this).load(R.drawable.loading).into(icon);
 
-        DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(fAuth.getCurrentUser().getUid());
+        DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(Uid);
 
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -84,7 +98,9 @@ public class ProfileActivity extends AppCompatActivity {
                         coordinate.setText(coord);
                         Log.d("Profile", "DocumentSnapshot data: " + doc.getData());
                     } else {
-                        Log.d("Profile", "No such document"+fAuth.getCurrentUser().getUid());
+                        Log.d("Profile", "No such document "+fAuth.getCurrentUser().getUid());
+                        setResult(1);
+                        finish();
                     }
                 } else {
                     Log.d("Profile", "get failed with ", task.getException());
@@ -98,6 +114,10 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        if (!isMyProfile) {
+            editProfile.setVisibility(View.GONE);
+        }
     }
 
 }
