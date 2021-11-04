@@ -20,7 +20,8 @@
 
         </activity>
         <activity android:name=".View.ProfileActivity">
-
+        </activity>
+        <activity android:name=".View.FriendListActivity">
         </activity>
         <activity android:name=".View.Register">
 
