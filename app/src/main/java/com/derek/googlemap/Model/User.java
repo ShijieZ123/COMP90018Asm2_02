@@ -12,6 +12,8 @@ public class User {
     private String loti;
     private String email;
     private String password;
+    private String birthday;
+    private String friends;
     private String phone;
     private int position;
 

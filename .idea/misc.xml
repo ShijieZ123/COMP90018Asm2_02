@@ -10,8 +10,11 @@
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1859375" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1859375" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.12318840579710146" />
+        <entry key="app/src/main/res/layout/activity_friendlist.xml" value="0.36707824724211635" />
+        <entry key="app/src/main/res/layout/activity_friendslist.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.1598731884057971" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.23882123447002024" />
+        <entry key="app/src/main/res/layout/friendlist_item.xml" value="0.13020833333333334" />
         <entry key="app/src/main/res/layout/main_nav_drawer.xml" value="0.13020833333333334" />
       </map>
     </option>
