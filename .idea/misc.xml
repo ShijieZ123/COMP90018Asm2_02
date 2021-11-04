@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.1859375" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1859375" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.12318840579710146" />
+        <entry key="app/src/main/res/layout/activity_friend_detail.xml" value="0.23515602376303993" />
         <entry key="app/src/main/res/layout/activity_friendlist.xml" value="0.36707824724211635" />
         <entry key="app/src/main/res/layout/activity_friendslist.xml" value="0.1703125" />
         <entry key="app/src/main/res/layout/activity_items.xml" value="0.125" />
@@ -20,5 +21,6 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="Android API 30 Platform" project-jdk-type="Android SDK" />
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android API 30 Platform" project-jdk-type="Android SDK" />
 </project>

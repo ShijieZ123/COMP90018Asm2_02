@@ -21,6 +21,7 @@
         <activity android:name=".View.EditProfile" />
         <activity android:name=".View.ProfileActivity" />
         <activity android:name=".View.FriendListActivity" />
+        <activity android:name=".View.FriendDetailActivity" />
         <activity android:name=".View.Register" />
         <activity android:name=".Utility.Login">
             <intent-filter>
