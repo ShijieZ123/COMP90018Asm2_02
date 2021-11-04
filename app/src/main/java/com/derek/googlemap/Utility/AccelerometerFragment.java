@@ -1,7 +1,5 @@
 package com.derek.googlemap.Utility;
 
-import static com.derek.googlemap.View.MainActivity.logout;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;

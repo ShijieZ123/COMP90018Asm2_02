@@ -1,10 +1,12 @@
 package com.derek.googlemap.View;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -33,6 +35,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.derek.googlemap.R;
 import com.derek.googlemap.Utility.Login;
@@ -67,15 +70,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 import com.derek.googlemap.BitmapFillet;
 
 import com.derek.googlemap.Utility.*;
+
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener, PopupMenu.OnMenuItemClickListener, LocationListener {
@@ -190,7 +198,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Create a reference to the cities collection
 
 
-
         DocumentReference documentReference = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -228,7 +235,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // text show current speed
         speed = (TextView) findViewById(R.id.speed);
-        LocationManager lm =(LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {ACCESS_FINE_LOCATION}, 200);
+        }
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {ACCESS_COARSE_LOCATION}, 200);
+        }
+        if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Error: app requires permission to use location", Toast.LENGTH_SHORT);
+        }
         lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 1, this);
         this.onLocationChanged(null);
 
@@ -499,7 +515,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         logout(this);
     }
 
-    public static void logout(Activity activity) {
+    public void logout(Activity activity) {
         //Initialize alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         //Set title
@@ -519,7 +535,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 fAuth.signOut();
                 //Redirect activity to Login
                 redirectActivity(activity, Login.class);
-
+                finish();
             }
         });
 

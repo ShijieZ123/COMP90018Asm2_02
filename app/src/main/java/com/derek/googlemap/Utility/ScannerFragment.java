@@ -1,5 +1,6 @@
 package com.derek.googlemap.Utility;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ import eu.livotov.labs.android.camview.scanner.decoder.zxing.ZXDecoder;
 import static android.Manifest.permission.CAMERA;
 
 import com.derek.googlemap.R;
+import com.derek.googlemap.View.ProfileActivity;
 
 public class ScannerFragment extends Fragment {
 
@@ -54,12 +57,12 @@ public class ScannerFragment extends Fragment {
         scanner.setScannerViewEventListener(new ScannerLiveView.ScannerViewEventListener() {
             @Override
             public void onScannerStarted(ScannerLiveView scanner) {
-                Toast.makeText(getActivity(), "Scanner Started", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Scanner Started", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onScannerStopped(ScannerLiveView scanner) {
-                Toast.makeText(getActivity(), "Scanner Stopped", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "Scanner Stopped", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -69,7 +72,14 @@ public class ScannerFragment extends Fragment {
 
             @Override
             public void onCodeScanned(String data) {
+
                 tvScanner.setText(data);
+
+                Intent i = new Intent(getActivity(), ProfileActivity.class);
+                Bundle b = new Bundle();
+                b.putString("uid", data);
+                i.putExtras(b);
+                startActivityForResult(i, 1);
             }
         });
 
@@ -80,6 +90,15 @@ public class ScannerFragment extends Fragment {
                 getFragmentManager().popBackStackImmediate();
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        Log.d("Scanner", "result returned, resultCode: " + resultCode);
+        int ERROR_CODE = 1;
+        if (resultCode == ERROR_CODE) {
+            Toast.makeText(getActivity(), "Error retrieving user data", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

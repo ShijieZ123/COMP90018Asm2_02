@@ -58,7 +58,7 @@ public class GeneratorFragment extends Fragment {
         generateCodeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String data = "AddFriend#"+getMyID();
+                String data = getMyID();
                 if (data.isEmpty()) {
                     Toast.makeText(getActivity(),
                             "Error retrieving user ID",
