@@ -1,7 +1,10 @@
 package com.derek.googlemap.View;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -78,14 +81,31 @@ public class FriendListActivity extends AppCompatActivity{
                         double mloti = documentSnapshot.getDouble("loti");
                         FriendAdapter friendAdapter = new FriendAdapter(FriendListActivity.this, friends,mlati,mloti);
                         friendListView.setAdapter(friendAdapter);
+                        friendListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                Friend selectedFriend = friends.get(i);
+                                Log.d("TEST selected friend", selectedFriend.getfName());
 
+                                Intent intent = new Intent(FriendListActivity.this, FriendDetailActivity.class);
+                                intent.putExtra("imageUrl", selectedFriend.getImageUrl());
+                                intent.putExtra("fName", selectedFriend.getfName());
+                                intent.putExtra("email", selectedFriend.getEmail());
+                                intent.putExtra("gender", selectedFriend.getGender());
+                                intent.putExtra("birthday", selectedFriend.getBirthday());
+                                intent.putExtra("phone", selectedFriend.getPhone());
+                                intent.putExtra("lati", selectedFriend.getLati());
+                                intent.putExtra("loti", selectedFriend.getLoti());
+                                intent.putExtra("mFriends",splitedFriends);
+                                intent.putExtra("uidToDelete",docs.get(i).getId());
+
+
+                                startActivity(intent);
+                            }
+                        });
                     }
                 });
-
             }
         });
-
-
-
     }
 }
