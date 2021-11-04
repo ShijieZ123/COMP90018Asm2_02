@@ -27,12 +27,31 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="356dp"
+        android:layout_marginEnd="150dp"
+        android:text="name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/coordinateLable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="557dp"
         android:text="Coordinate"
         app:layout_constraintStart_toStartOf="@+id/birthdayLable"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/coordinate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="557dp"
+        android:text="coordinate"
+        app:layout_constraintEnd_toEndOf="@+id/birthday"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -45,49 +64,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="451dp"
+        android:text="gender"
+        app:layout_constraintEnd_toEndOf="@+id/email"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/birthdayLable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="500dp"
         android:text="Birthday"
         app:layout_constraintStart_toStartOf="@+id/genderLable"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/emailLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="399dp"
-        android:text="Email"
-        app:layout_constraintStart_toStartOf="@+id/nameLabel"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/phoneLable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="612dp"
-        android:text="Phone"
-        app:layout_constraintStart_toStartOf="@+id/coordinateLable"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="356dp"
-        android:layout_marginEnd="150dp"
-        android:text="name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="448dp"
-        android:text="gender"
-        app:layout_constraintEnd_toEndOf="@+id/email"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -100,6 +91,33 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/emailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="399dp"
+        android:text="Email"
+        app:layout_constraintStart_toStartOf="@+id/nameLabel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="399dp"
+        android:text="Email"
+        app:layout_constraintEnd_toEndOf="@+id/name"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/phoneLable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="612dp"
+        android:text="Phone"
+        app:layout_constraintStart_toStartOf="@+id/coordinateLable"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,30 +126,28 @@
         app:layout_constraintEnd_toEndOf="@+id/coordinate"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/coordinate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="556dp"
-        android:layout_marginEnd="8dp"
-        android:text="coordinate"
-        app:layout_constraintEnd_toEndOf="@+id/birthday"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="394dp"
-        android:text="Email"
-        app:layout_constraintEnd_toEndOf="@+id/name"
-        app:layout_constraintTop_toTopOf="parent" />
+
+
 
     <Button
         android:id="@+id/editProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.939" />
+
+    <Button
+        android:id="@+id/addFriend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="Add friend"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"

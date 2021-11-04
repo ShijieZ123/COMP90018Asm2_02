@@ -1,5 +1,7 @@
 package com.derek.googlemap.Utility;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,7 +32,7 @@ import androidmads.library.qrgenearator.QRGEncoder;
 
 import static android.content.Context.WINDOW_SERVICE;
 
-public class GeneratorFragment extends Fragment {
+public class GeneratorActivity extends AppCompatActivity {
 
     private TextView generatorTV;
     private ImageView generatorIV;
@@ -40,32 +42,26 @@ public class GeneratorFragment extends Fragment {
     private ImageButton back;
     FirebaseAuth fAuth;
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_generator, container, false);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_generator);
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         fAuth = FirebaseAuth.getInstance();
-        generatorTV = getView().findViewById(R.id.tvGenerator);
-        generatorIV = getView().findViewById(R.id.ivGenerator);
-        generateCodeBtn = getView().findViewById(R.id.GenerateCodeBtn);
+        generatorTV = findViewById(R.id.tvGenerator);
+        generatorIV = findViewById(R.id.ivGenerator);
+        generateCodeBtn = findViewById(R.id.GenerateCodeBtn);
         generateCodeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String data = getMyID();
                 if (data.isEmpty()) {
-                    Toast.makeText(getActivity(),
+                    Toast.makeText(GeneratorActivity.this,
                             "Error retrieving user ID",
                             Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    WindowManager manager = (WindowManager) getActivity().getSystemService(WINDOW_SERVICE);
+                    WindowManager manager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
                     Display display = manager.getDefaultDisplay();
 
@@ -90,11 +86,10 @@ public class GeneratorFragment extends Fragment {
             }
         });
 
-        back = (ImageButton) getActivity().findViewById(R.id.iv_back);
+        back = findViewById(R.id.iv_back);
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                getActivity().recreate();
-                getFragmentManager().popBackStackImmediate();
+                finish();
             }
         });
     }

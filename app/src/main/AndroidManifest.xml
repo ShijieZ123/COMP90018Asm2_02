@@ -12,42 +12,32 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".View.EditProfile">
-
-        </activity>
-        <activity android:name=".View.ProfileActivity">
-        </activity>
-        <activity android:name=".View.FriendListActivity">
-        </activity>
-        <activity android:name=".View.Register">
-
-        </activity>
+        <activity android:name=".Utility.GeneratorActivity"></activity>
+        <activity android:name=".Utility.ScannerActivity" />
+        <activity android:name=".View.EditProfile" />
+        <activity android:name=".View.ProfileActivity" />
+        <activity android:name=".View.FriendListActivity" />
+        <activity android:name=".View.Register" />
         <activity android:name=".Utility.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".View.MainActivity">
-
-
-
-        </activity>
+        <activity android:name=".View.MainActivity" />
         <activity
             android:name=".View.UploadActivity"
             android:label="Add users"
-            android:parentActivityName="com.derek.googlemap.View.MainActivity" />
-
+            android:parentActivityName=".View.MainActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAJl6qW_VpJfl2CQzUEiVVaOPJ3QVmWd4A" />
-
     </application>
 
 </manifest>
