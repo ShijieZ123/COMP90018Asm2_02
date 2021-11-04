@@ -39,7 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     ImageView icon;
     TextView name, email, gender,birthday,coordinate,phone;
-    Button editProfile;
+    Button editProfile, addFriend;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     FirebaseUser user;
@@ -60,6 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
         coordinate = findViewById(R.id.coordinate);
         phone = findViewById(R.id.phone);
         editProfile = findViewById(R.id.editProfile);
+        addFriend = findViewById(R.id.addFriend);
 
         fAuth = FirebaseAuth.getInstance();
         String Uid = fAuth.getCurrentUser().getUid();
@@ -115,8 +116,16 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        addFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ProfileActivity.this, "Button clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         if (!isMyProfile) {
             editProfile.setVisibility(View.GONE);
+            addFriend.setVisibility(View.VISIBLE);
         }
     }
 

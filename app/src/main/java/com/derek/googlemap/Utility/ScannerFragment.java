@@ -29,7 +29,7 @@ import com.derek.googlemap.View.ProfileActivity;
 public class ScannerFragment extends Fragment {
 
     private ScannerLiveView scanner;
-    private TextView tvScanner;
+    //private TextView tvScanner;
     private ImageButton back;
 
     @Override
@@ -44,7 +44,7 @@ public class ScannerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         scanner = getView().findViewById(R.id.codeScanner);
-        tvScanner = getView().findViewById(R.id.tvScanner);
+        //tvScanner = getView().findViewById(R.id.tvScanner);
 
         while (true) {
             if (!permissionGranted()) {
@@ -73,7 +73,7 @@ public class ScannerFragment extends Fragment {
             @Override
             public void onCodeScanned(String data) {
 
-                tvScanner.setText(data);
+                //tvScanner.setText(data);
 
                 Intent i = new Intent(getActivity(), ProfileActivity.class);
                 Bundle b = new Bundle();
