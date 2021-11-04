@@ -52,6 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+        /* bind views */
         icon = findViewById(R.id.icon);
         name = findViewById(R.id.name);
         email = findViewById(R.id.email);
@@ -62,15 +63,19 @@ public class ProfileActivity extends AppCompatActivity {
         editProfile = findViewById(R.id.editProfile);
         addFriend = findViewById(R.id.addFriend);
 
+        /* initialise firebase variables and get current user ID */
         fAuth = FirebaseAuth.getInstance();
-        String Uid = fAuth.getCurrentUser().getUid();
         fStore = FirebaseFirestore.getInstance();
         user = fAuth.getCurrentUser();
+        String Uid = user.getUid();
         storageReference = FirebaseStorage.getInstance().getReference();
 
+        /* check for a user ID in provided parameters */
         Bundle b = getIntent().getExtras();
         if (b != null) {
             String argUid = b.getString("uid");
+            /* if a user ID is found and it is not the same as the current users, we are viewing
+            *  another user's profile */
             if (!argUid.equals(Uid)) {
                 isMyProfile = false;
                 Uid = argUid;
@@ -86,6 +91,7 @@ public class ProfileActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot doc = task.getResult();
+                    /* if user information is retrieved correctly, display in the app */
                     if (doc.exists()) {
 
                         Glide.with(ProfileActivity.this).load(doc.getString("imageUrl")).into(icon);
@@ -100,6 +106,7 @@ public class ProfileActivity extends AppCompatActivity {
                         Log.d("Profile", "DocumentSnapshot data: " + doc.getData());
                     } else {
                         Log.d("Profile", "No such document "+fAuth.getCurrentUser().getUid());
+                        /* result is for scanner if an invalid user ID is provided */
                         setResult(1);
                         finish();
                     }
@@ -123,6 +130,7 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        /* if not current user's profile, prevent ability to edit */
         if (!isMyProfile) {
             editProfile.setVisibility(View.GONE);
             addFriend.setVisibility(View.VISIBLE);
