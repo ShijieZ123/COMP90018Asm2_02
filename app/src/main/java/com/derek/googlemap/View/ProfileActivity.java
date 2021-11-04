@@ -37,7 +37,7 @@ import java.net.URL;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    ImageView icon;
+    ImageView icon, back;
     TextView name, email, gender,birthday,coordinate,phone;
     Button editProfile, addFriend;
     FirebaseAuth fAuth;
@@ -60,7 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
         coordinate = findViewById(R.id.coordinate);
         phone = findViewById(R.id.phone);
         editProfile = findViewById(R.id.editProfile);
-        addFriend = findViewById(R.id.addFriend);
+        back = findViewById(R.id.iv_back);
 
         fAuth = FirebaseAuth.getInstance();
         String Uid = fAuth.getCurrentUser().getUid();
@@ -116,10 +116,10 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        addFriend.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ProfileActivity.this, "Button clicked!", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
 
