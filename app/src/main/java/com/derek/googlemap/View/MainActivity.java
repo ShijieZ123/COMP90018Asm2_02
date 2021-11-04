@@ -37,6 +37,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.derek.googlemap.Direction.FetchURL;
+import com.derek.googlemap.Direction.TaskLoadedCallback;
 import com.derek.googlemap.R;
 import com.derek.googlemap.Utility.Login;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -46,6 +48,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -64,6 +68,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import androidx.annotation.NonNull;
@@ -86,13 +91,15 @@ import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener, PopupMenu.OnMenuItemClickListener, LocationListener {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, SensorEventListener, PopupMenu.OnMenuItemClickListener, LocationListener, TaskLoadedCallback {
 
 
     @BindView(R.id.btn_add)
     Button btnAdd;
     @BindView(R.id.iv_refresh)
     ImageView ivRefresh;
+    @BindView(R.id.refresh)
+    ImageView refresh;
 
     private ProgressBar mProgressBar;
     private FirebaseStorage mStorage;
@@ -129,6 +136,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     //******************Navigation*******************
     DrawerLayout drawerLayout;
+
+    //direction variable
+    ArrayList<LatLng> listPoints;
+    private Polyline polyline;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -266,6 +277,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
+        //direction
+        listPoints = new ArrayList<LatLng>();
+
+
     }
 
     private void findFriends() {
@@ -304,19 +319,71 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-//        120.196303,33.437243
-//        119.430007,33.755245
 
         mMap = googleMap;
 
-//        LatLng sydney = new LatLng(-25.344, 131.036);
-//        addUserMarker(sydney, "https://img2.baidu.com/it/u=3243760465,2391088822&fm=26&fmt=auto", "user");
-//
-//        LatLng sydney1 = new LatLng(33.424855, 120.222377);
-//        addUserMarker(sydney1, "https://img0.baidu.com/it/u=1128572502,203785415&fm=26&fmt=auto", "yan");
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                //Reset marker when already 2
+                if (listPoints.size()==2){
+                    listPoints.clear();
+                    mMap.clear();
+                }
+                //Save first point select
+                listPoints.add(latLng);
+                //Create marker
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(latLng);
+
+                if(listPoints.size()==1){
+                    //Add first marker to map
+                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                } else{
+                    //Add second marker
+                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                }
+                mMap.addMarker(markerOptions);
+
+                //get direction
+                if(listPoints.size()==2){
+                    String url = getUrl(listPoints.get(0),listPoints.get(1), "driving");
+//                    TaskRequestDirections taskRequestDirections = new TaskRequestDirections();
+//                    taskRequestDirections.execute(url);
+                    new FetchURL(MainActivity.this).execute(url,"driving");
+                }
+
+
+            }
+        });
 
     }
 
+
+    //getUrl is provided in the Google Map Platform
+    private String getUrl(LatLng origin, LatLng dest, String directionMode) {
+        // Origin of route
+        String str_origin = "origin=" + origin.latitude + "," + origin.longitude;
+        // Destination of route
+        String str_dest = "destination=" + dest.latitude + "," + dest.longitude;
+        // Mode
+        String mode = "mode=" + directionMode;
+        // Building the parameters to the web service
+        String parameters = str_origin + "&" + str_dest + "&" + mode;
+        // Output format
+        String output = "json";
+        // Building the url to the web service
+        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + getString(R.string.google_maps_key);
+        return url;
+    }
+
+    @Override
+    public void onTaskDone(Object... values) {
+        if(polyline != null){
+            polyline.remove();
+        }
+        polyline = mMap.addPolyline((PolylineOptions) values[0]);
+    }
 
     private void addUserMarker(LatLng sydney, String imageUrl, String userName) {
 
@@ -399,7 +466,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     Intent intent;
 
-    @OnClick({R.id.btn_add, R.id.iv_refresh})
+    @OnClick({R.id.btn_add, R.id.iv_refresh, R.id.refresh})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_add:
@@ -415,6 +482,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 intent = new Intent(this, ProfileActivity.class);
 
                 startActivity(intent);
+
+                break;
+
+            case R.id.refresh:
+                recreate();
 
                 break;
         }

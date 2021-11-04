@@ -127,6 +127,7 @@ public class ProfileActivity extends AppCompatActivity {
             editProfile.setVisibility(View.GONE);
             addFriend.setVisibility(View.VISIBLE);
         }
+
     }
 
 }
