@@ -54,24 +54,19 @@ public class FriendListActivity extends AppCompatActivity{
                     }
                     DocumentReference friendDoc = FirebaseFirestore.getInstance().collection("users").document(uid);
                     friendDoc.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                        FriendAdapter friendAdapter = new FriendAdapter(FriendListActivity.this, friends);
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
                             Friend friend = documentSnapshot.toObject(Friend.class);
                             Log.d("TEST ON friend name", friend.getfName());
                             friends.add(friend);
 
-                            FriendAdapter friendAdapter = new FriendAdapter(FriendListActivity.this,friends);
                             friendListView.setAdapter(friendAdapter);
-
+                            // display friends
+                            Log.d("TEST ON friend number", String.valueOf(friends.size()));
                         }
                     });
                 }
-
-
-                // display friends
-                Log.d("TEST ON friend number", String.valueOf(friends.size()));
-                FriendAdapter friendAdapter = new FriendAdapter(FriendListActivity.this,friends);
-                friendListView.setAdapter(friendAdapter);
             }
         });
 
