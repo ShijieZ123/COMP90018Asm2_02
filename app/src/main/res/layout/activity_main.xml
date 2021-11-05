@@ -67,7 +67,7 @@
                 tools:ignore="MissingConstraints" />
 
             <ImageView
-                android:id="@+id/iv_refresh"
+                android:id="@+id/edit_info"
                 android:layout_width="47dp"
                 android:layout_height="47dp"
                 android:layout_alignParentRight="true"

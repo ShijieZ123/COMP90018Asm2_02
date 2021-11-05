@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @BindView(R.id.btn_add)
     Button btnAdd;
-    @BindView(R.id.iv_refresh)
+    @BindView(R.id.edit_info)
     ImageView ivRefresh;
     @BindView(R.id.refresh)
     ImageView refresh;
@@ -407,7 +407,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     Intent intent;
 
-    @OnClick({R.id.btn_add, R.id.iv_refresh, R.id.refresh})
+
+    @OnClick({R.id.btn_add, R.id.edit_info, R.id.refresh})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_add:
@@ -417,7 +418,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 startActivity(intent);
                 break;
 
-            case R.id.iv_refresh:
+            case R.id.edit_info:
 
                 intent = new Intent(this, ProfileActivity.class);
 
