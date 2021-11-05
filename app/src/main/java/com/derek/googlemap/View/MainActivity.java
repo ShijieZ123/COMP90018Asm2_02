@@ -249,7 +249,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         String[] fs = friend.split(",");
         List<String> friendids = new ArrayList<>(Arrays.asList(fs));
         friendids.remove("");
-        Log.d("List length", String.valueOf(fs.length));
         int count = 0;
         for (String f:friendids){
             ++count;
