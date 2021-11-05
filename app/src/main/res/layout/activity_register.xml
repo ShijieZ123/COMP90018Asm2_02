@@ -70,6 +70,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="Full Name"
@@ -80,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
@@ -167,17 +168,17 @@
     <Spinner
         android:id="@+id/gender"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:padding="10dp"
-        android:textSize="14sp"
         android:background="@drawable/ic_dropdown_boarder"
+        android:padding="10dp"
+        android:spinnerMode="dropdown"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:spinnerMode="dropdown"
-        app:layout_constraintTop_toBottomOf="@+id/birthday"/>
+        app:layout_constraintTop_toBottomOf="@+id/birthday" />
 <!--    <Spinner-->
 <!--        android:id="@+id/gender"-->
 <!--        android:layout_width="match_parent"-->
@@ -190,7 +191,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="172dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:background="@color/colorAccent"
         android:fontFamily="@font/aclonica"

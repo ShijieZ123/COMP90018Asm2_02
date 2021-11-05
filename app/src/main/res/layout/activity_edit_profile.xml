@@ -67,16 +67,16 @@
     <Spinner
         android:id="@+id/profileGender"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="35dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:padding="10dp"
-        android:textSize="14sp"
         android:background="@drawable/ic_dropdown_boarder"
+        android:padding="10dp"
+        android:spinnerMode="dropdown"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:spinnerMode="dropdown" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/profileBirthday"
@@ -105,7 +105,7 @@
     <Button
         android:id="@+id/saveProfileInfo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_margin="25dp"
         android:background="@color/colorAccent"
         android:text="Save"
