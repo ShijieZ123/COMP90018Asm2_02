@@ -27,19 +27,19 @@
         android:onClick="ClickHome">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="323dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:text="Home"
-            android:textStyle="bold"
             android:padding="22dp"
-            android:layout_marginStart="16dp"/>
+            android:text="Home"
+            android:textStyle="bold" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_marginEnd="48dp"
-            android:src="@drawable/ic_map"/>
+            android:src="@drawable/map"/>
 
     </LinearLayout>
 
@@ -51,19 +51,19 @@
         android:onClick="CLickProfile">
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="299dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_weight="1"
-            android:text="Personal Profile"
-            android:textStyle="bold"
             android:padding="22dp"
-            android:layout_marginStart="16dp"/>
+            android:text="Personal Profile"
+            android:textStyle="bold" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="36dp"
+            android:layout_height="32dp"
             android:layout_marginEnd="48dp"
-            android:src="@drawable/ic_person"/>
+            android:src="@drawable/personal_info" />
 
     </LinearLayout>
 
@@ -84,10 +84,10 @@
             android:layout_marginStart="16dp"/>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="36dp"
+            android:layout_height="34dp"
             android:layout_marginEnd="48dp"
-            android:src="@drawable/ic_friends"/>
+            android:src="@drawable/friendslist" />
 
     </LinearLayout>
 
@@ -108,10 +108,10 @@
             android:layout_marginStart="16dp"/>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="34dp"
             android:layout_marginEnd="48dp"
-            android:src="@drawable/ic_logout"/>
+            android:src="@drawable/logout2" />
 
     </LinearLayout>
 

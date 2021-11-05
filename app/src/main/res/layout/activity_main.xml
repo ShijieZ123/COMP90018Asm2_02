@@ -47,7 +47,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="140dp"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="20dp">
 
@@ -55,13 +55,15 @@
                 android:id="@+id/btn_add"
                 android:layout_width="87dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
                 android:background="@drawable/add_user_bg"
                 android:text="+Add"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView"
+                app:layout_constraintVertical_bias="1.0"
                 tools:ignore="MissingConstraints" />
 
             <ImageView
@@ -70,32 +72,65 @@
                 android:layout_height="47dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerInParent="true"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/profile1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.427"
                 app:layout_constraintStart_toEndOf="@+id/btn_add"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.835"
                 tools:ignore="MissingConstraints" />
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="0dp"
-                android:layout_marginBottom="0dp"
                 android:src="@drawable/compass"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="-1dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="103dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/speed"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/textView3"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/speed"
+                    android:layout_width="50dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="37dp"
+                    android:layout_marginBottom="2dp"
+                    android:fontFamily="casual"
+                    android:text="speed"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/speed"
-            android:layout_width="50dp"
-            android:layout_height="20dp"
-            android:layout_centerInParent="true"
-            android:text="Speed: " />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -103,13 +138,13 @@
 
             <ImageView
                 android:id="@+id/refresh"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="53dp"
+                android:layout_marginBottom="51dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@drawable/refresh1" />
+                app:srcCompat="@drawable/refresh2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </RelativeLayout>
