@@ -86,14 +86,21 @@ public class SearchActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         // update friend list in firebase
                                         DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                                        Map<String, Object> edited = new HashMap<>();
-                                        Log.d("Uid", user_uid);
-                                        edited.put("friends", "," + user_uid);
-                                        docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                             @Override
-                                            public void onSuccess(Void aVoid) {
-                                                Toast.makeText(SearchActivity.this, "Add success", Toast.LENGTH_SHORT).show();
-                                                finish();
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    DocumentSnapshot mDoc = task.getResult();
+                                                    String friends = mDoc.getString("friends");
+                                                    friends +=","+user_uid;
+                                                    docRef.update("friends",friends).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            Toast.makeText(SearchActivity.this, "Add success", Toast.LENGTH_SHORT).show();
+                                                            finish();
+                                                        }
+                                                    });
+                                                }
                                             }
                                         });
                                     }

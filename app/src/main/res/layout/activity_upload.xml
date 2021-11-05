@@ -88,7 +88,7 @@
                 android:layout_marginLeft="15dp"
                 android:background="@null"
                 android:gravity="center_vertical"
-                android:hint="please input name"
+                android:hint="please input uid"
                 android:inputType="text"
                 android:paddingLeft="15dp"
                 android:textSize="15dp" />
@@ -175,7 +175,7 @@
             android:layout_marginStart="16dp"
             android:background="@color/colorPrimary"
             android:gravity="center"
-            android:text="Add"
+            android:text="Search"
             android:textColor="@color/white" />
     </LinearLayout>
 

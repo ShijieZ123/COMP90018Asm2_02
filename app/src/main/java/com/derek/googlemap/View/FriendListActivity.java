@@ -104,7 +104,6 @@ public class FriendListActivity extends AppCompatActivity{
                                 intent.putExtra("mFriends",splitedFriends);
                                 intent.putExtra("uidToDelete",docs.get(i).getId());
 
-
                                 startActivity(intent);
                             }
                         });
