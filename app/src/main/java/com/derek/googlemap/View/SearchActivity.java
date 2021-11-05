@@ -126,9 +126,11 @@ public class SearchActivity extends AppCompatActivity {
                         });
 
                     } else {
+                        Toast.makeText(SearchActivity.this, "No friend found", Toast.LENGTH_SHORT).show();
                         Log.d("Search", "No such document "+ user_uid);
-                        setResult(1);
+//                        setResult(1);
                         finish();
+                        return;
                     }
                 } else {
                     Log.d("Search", "get failed with ", task.getException());

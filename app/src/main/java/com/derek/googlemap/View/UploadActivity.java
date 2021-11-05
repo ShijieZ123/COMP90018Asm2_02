@@ -121,7 +121,11 @@ public class UploadActivity extends AppCompatActivity {
                 } else {
                     Log.e("CHECK UID", String.valueOf(nameEditText.getText()));
                     Intent intent = new Intent(UploadActivity.this, SearchActivity.class);
-                    intent.putExtra("uid", nameEditText.getText().toString());
+                    String uid = nameEditText.getText().toString();
+                    if(uid.isEmpty()){
+                        return;
+                    }
+                    intent.putExtra("uid", uid);
                     startActivity(intent);
                     finish();
                 }
