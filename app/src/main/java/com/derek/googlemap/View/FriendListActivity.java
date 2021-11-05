@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import java.util.concurrent.TimeUnit;
 public class FriendListActivity extends AppCompatActivity{
 
     ListView friendListView;
+    ImageButton back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class FriendListActivity extends AppCompatActivity{
         setContentView(R.layout.activity_friendlist);
 
         friendListView = findViewById(R.id.friendlist);
+        back = findViewById(R.id.iv_back);
 
         DocumentReference userDoc = FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
@@ -111,6 +114,14 @@ public class FriendListActivity extends AppCompatActivity{
                 });
             }
         });
+
+        back.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     public void exitFriendList(Activity activity) {
