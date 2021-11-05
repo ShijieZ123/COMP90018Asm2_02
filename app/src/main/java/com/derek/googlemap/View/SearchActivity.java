@@ -88,7 +88,7 @@ public class SearchActivity extends AppCompatActivity {
                                         DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
                                         Map<String, Object> edited = new HashMap<>();
                                         Log.d("Uid", user_uid);
-                                        edited.put("friends", user_uid);
+                                        edited.put("friends", "," + user_uid);
                                         docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void aVoid) {

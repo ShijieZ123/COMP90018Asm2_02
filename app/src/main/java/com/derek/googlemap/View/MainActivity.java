@@ -529,6 +529,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void ClickLogout(View view){
         //logout
         logout(this);
+        // test search
 //        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
 //        intent.putExtra("uid", "AGmYx6VNGlPdVFDS12bGqTIn4Xz1");
 //        startActivity(intent);
