@@ -40,6 +40,7 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
 
+        // bind view
         back = findViewById(R.id.iv_back);
         user_image = findViewById(R.id.user_image);
         user_name = findViewById(R.id.user_name);
@@ -54,6 +55,7 @@ public class SearchActivity extends AppCompatActivity {
         // make firebase document reference through user id
         DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(user_uid);
 
+        // launch a document reference which can have access to the user's detail information
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -119,6 +121,7 @@ public class SearchActivity extends AppCompatActivity {
                             }
                         });
 
+                        // back to parent activity
                         back.setOnClickListener(new View.OnClickListener() {
                             public void onClick(View v) {
                                 finish();
@@ -126,6 +129,7 @@ public class SearchActivity extends AppCompatActivity {
                         });
 
                     } else {
+                        // detect the null value of friend list get from firebase
                         Toast.makeText(SearchActivity.this, "No friend found", Toast.LENGTH_SHORT).show();
                         Log.d("Search", "No such document "+ user_uid);
 //                        setResult(1);
@@ -133,6 +137,7 @@ public class SearchActivity extends AppCompatActivity {
                         return;
                     }
                 } else {
+                    // detect the failure of interacting with firebase
                     Log.d("Search", "get failed with ", task.getException());
                 }
             }
