@@ -1,11 +1,15 @@
 package com.derek.googlemap.View;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,12 +30,12 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class FriendListActivity extends AppCompatActivity{
@@ -54,6 +58,7 @@ public class FriendListActivity extends AppCompatActivity{
                 String friends = documentSnapshot.getString("friends");
 
                 if(friends.length()==0){
+                    exitFriendList(FriendListActivity.this);
                     return;
                 }
 
@@ -107,5 +112,24 @@ public class FriendListActivity extends AppCompatActivity{
                 });
             }
         });
+    }
+
+    public void exitFriendList(Activity activity) {
+        //Initialize alert dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        //Set title
+        builder.setTitle("Empty list");
+        //Set message
+        builder.setMessage("You did not add any friend yet");
+
+        //Negative no button
+        builder.setNegativeButton("Go Back", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        //Show dialog
+        builder.show();
     }
 }
