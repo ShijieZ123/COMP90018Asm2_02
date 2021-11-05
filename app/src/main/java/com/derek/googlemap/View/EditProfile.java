@@ -1,3 +1,9 @@
+/**
+ *
+ * This class is an activity of editing profile activity
+ *
+ */
+
 package com.derek.googlemap.View;
 
 import android.content.ContentResolver;
@@ -78,9 +84,9 @@ public class EditProfile extends TakePhotoActivity {
 
     private Uri imageUri; //global variable when taking picture
 
-    private StorageTask mUploadTask;
+    private StorageTask mUploadTask; //global variable for upload task
 
-    private static final String[] genders = {"Male", "Female", "Other"};
+    private static final String[] genders = {"Male", "Female", "Other"}; // options for gender dropdown list
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +111,8 @@ public class EditProfile extends TakePhotoActivity {
         storageReference = FirebaseStorage.getInstance().getReference();
         mStorageRef = FirebaseStorage.getInstance().getReference("teachers_uploads");
 
+
+        /* bind views */
         back = findViewById(R.id.iv_back);
         profileFullName = findViewById(R.id.profileFullName);
         profileEmail = findViewById(R.id.profileEmailAddress);
@@ -118,6 +126,7 @@ public class EditProfile extends TakePhotoActivity {
 
         String userId = fAuth.getCurrentUser().getUid();
 
+        // get the current user's information
         DocumentReference documentReference = fStore.collection("users").document(userId);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -136,21 +145,14 @@ public class EditProfile extends TakePhotoActivity {
                 }
             }
         });
-//        StorageReference profileRef = storageReference.child("users/" + fAuth.getCurrentUser().getUid() + "/profile.jpg");
-//        profileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//            @Override
-//            public void onSuccess(Uri uri) {
-//                Picasso.with(EditProfile.this).load(uri).placeholder(R.mipmap.default_head).error(R.mipmap.default_head).into(profileImageView);
-//            }
-//        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-
             }
         });
+
         profileImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,30 +165,14 @@ public class EditProfile extends TakePhotoActivity {
                                     case 0: //choose take picture
                                         String takePictureName = System.currentTimeMillis() + ".png";
                                         File takePhotoImage = new File(getApplicationContext().getFilesDir().getAbsolutePath() + "/" + takePictureName);
-//                                        try {
-//                                            takePhotoImage.createNewFile();
-//                                        } catch (Exception e) {
-//                                            e.printStackTrace();
-//                                        }
-//                                        imageUri = getImageContentUri(EditProfile.this, takePhotoImage);
-//
-//                                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                                        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
-//                                        startActivityForResult(intent, TAKE_PHOTO);
 
                                         takePhoto.onPickFromCaptureWithCrop(Uri.fromFile(takePhotoImage), cropOptions);
 
                                         break;
                                     case 1: //choose call gallery of phone
-//                                        Intent intent1 = new Intent(Intent.ACTION_PICK,
-//                                                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                                        startActivityForResult(intent1, LOCAL_CROP);
                                         String takePictureName1 = System.currentTimeMillis() + ".jpg";
                                         File takePhotoImage1 = new File(getApplicationContext().getFilesDir().getAbsolutePath() + "/" + takePictureName1);
-//
                                         takePhoto.onPickFromGalleryWithCrop(Uri.fromFile(takePhotoImage1), cropOptions);
-
-
                                         break;
                                 }
                             }
@@ -231,12 +217,6 @@ public class EditProfile extends TakePhotoActivity {
 
             }
         });
-//
-//        profileEmail.setText(email);
-//        profileFullName.setText(fullName);
-//        profilePhone.setText(phone);
-//
-//        Log.d(TAG, "onCreate: " + fullName + " " + email + " " + phone);
     }
 
 
@@ -250,20 +230,6 @@ public class EditProfile extends TakePhotoActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @androidx.annotation.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == 1000) {
-//            if (resultCode == Activity.RESULT_OK) {
-//                Uri imageUri = data.getData();
-//
-//                //profileImage.setImageURI(imageUri);
-//
-//                uploadImageToFirebase(imageUri);
-//
-//                Picasso.with(this).load(imageUri).into(profileImageView);
-//
-//                uploadImage(imageUri);
-//            }
-//        }
-
 
         switch (requestCode) {
             case TAKE_PHOTO: //choose take picture
@@ -367,8 +333,6 @@ public class EditProfile extends TakePhotoActivity {
                             mImageUri = galleryCropUri;
 
                         }
-
-//                        uploadImageToFirebase(imageUri);
 
                         uploadImage(imageUri);
                     } catch (Exception e) {

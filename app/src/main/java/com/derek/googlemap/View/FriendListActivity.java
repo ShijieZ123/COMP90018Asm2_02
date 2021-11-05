@@ -1,3 +1,7 @@
+/**
+ * This class is an activity of friend list view
+ */
+
 package com.derek.googlemap.View;
 
 import android.app.Activity;
@@ -49,9 +53,11 @@ public class FriendListActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friendlist);
 
+        /* bind views */
         friendListView = findViewById(R.id.friendlist);
         back = findViewById(R.id.iv_back);
 
+        // get current user's document reference
         DocumentReference userDoc = FirebaseFirestore.getInstance().collection("users").document(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         userDoc.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

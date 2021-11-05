@@ -1,5 +1,8 @@
 package com.derek.googlemap.View;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -40,7 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     ImageView icon, back;
     TextView name, email, gender,birthday,coordinate,phone;
-    Button editProfile, addFriend;
+    Button editProfile, addFriend, copyUid;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     FirebaseUser user;
@@ -63,6 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
         phone = findViewById(R.id.phone);
         editProfile = findViewById(R.id.editProfile);
         back = findViewById(R.id.iv_back);
+        copyUid = findViewById(R.id.uidButton);
 
         /* initialise firebase variables and get current user ID */
         fAuth = FirebaseAuth.getInstance();
@@ -95,6 +99,18 @@ public class ProfileActivity extends AppCompatActivity {
                     /* if user information is retrieved correctly, display in the app */
                     if (doc.exists()) {
 
+                        // if doc exits add on click listener to copy uid
+                        copyUid.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String userId = doc.getId();
+                                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                                ClipData clip = ClipData.newPlainText("uid", userId);
+                                clipboard.setPrimaryClip(clip);
+                                Toast.makeText(ProfileActivity.this, "Copy uid: "+userId, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
                         Glide.with(ProfileActivity.this).load(doc.getString("imageUrl")).into(icon);
                         name.setText(doc.getString("fName"));
                         phone.setText(doc.getString("phone"));
@@ -124,8 +140,6 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -138,7 +152,6 @@ public class ProfileActivity extends AppCompatActivity {
             editProfile.setVisibility(View.GONE);
             addFriend.setVisibility(View.VISIBLE);
         }
-
     }
 
     @Override

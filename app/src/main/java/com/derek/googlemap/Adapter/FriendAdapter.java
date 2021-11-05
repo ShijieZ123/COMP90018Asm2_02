@@ -1,6 +1,9 @@
 /**
  *
- * Code is refereced from the following site
+ * This class is a adapter for friend list activity. It is used to accept the list
+ * of friend, and display in friend list
+ *
+ * Code is referenced from the following site
  * https://anna-scott.medium.com/clickable-listview-items-with-clickable-buttons-e52fa6030d36
  */
 
@@ -19,12 +22,11 @@ import com.derek.googlemap.Model.Friend;
 import com.derek.googlemap.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FriendAdapter extends ArrayAdapter<Friend> {
 
-    private double mlati;
-    private double mloti;
+    private double mlati;   // store the current user's latitude
+    private double mloti;   // store the current user's latitude
 
     public FriendAdapter(Activity context, ArrayList<Friend> friends,double mlati, double mloti) {
 
@@ -41,16 +43,19 @@ public class FriendAdapter extends ArrayAdapter<Friend> {
                     R.layout.friendlist_item, parent, false);
         }
 
+        // get the current item from list.
         Friend currentFriend = getItem(position);
 
+        // Set the text for name of friend
         TextView nameTextView = (TextView) listItemView.findViewById(R.id.friendlist_item_name);
         nameTextView.setText(currentFriend.getfName());
 
+        // Set the distance between friend
         TextView numberTextView = (TextView) listItemView.findViewById(R.id.friendlist_item_distance);
         double distance = this.calculateDistance(mlati,mloti,currentFriend.getLati(),currentFriend.getLoti());
-
         numberTextView.setText(String.valueOf((int)distance)+" km away");
 
+        // Set the icon
         ImageView iconView = (ImageView) listItemView.findViewById(R.id.friendlist_item_icon);
         Glide.with(this.getContext()).load(currentFriend.getImageUrl()).into(iconView);
 
@@ -59,6 +64,7 @@ public class FriendAdapter extends ArrayAdapter<Friend> {
 
     /**
      * By given two points, this function calculate the distance between two points on google map
+     *
      * This function is referenced from https://blog.csdn.net/qq_31332467/article/details/79222165
      *
      * @param lati1 user's latitude

@@ -1,3 +1,9 @@
+/**
+ *
+ * This is a utility class for user login
+ *
+ */
+
 package com.derek.googlemap.Utility;
 
 import android.Manifest;
