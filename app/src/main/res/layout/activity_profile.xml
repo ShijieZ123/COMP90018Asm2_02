@@ -45,6 +45,7 @@
         android:layout_marginTop="200dp"
         android:layout_marginStart="50dp"
         android:text="Name"
+        android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -163,17 +164,30 @@
         app:layout_constraintTop_toBottomOf="@+id/phone" />
 
     <Button
-        android:id="@+id/editProfile"
+        android:id="@+id/uidButton"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginTop="60dp"
+        android:background="@color/colorAccent"
+        android:text="Copy Uid"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.479"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coordinate" />
+
+    <Button
+        android:id="@+id/editProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
         android:background="@color/colorAccent"
         android:text="Edit"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.479"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coordinate" />
+        app:layout_constraintTop_toBottomOf="@+id/uidButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

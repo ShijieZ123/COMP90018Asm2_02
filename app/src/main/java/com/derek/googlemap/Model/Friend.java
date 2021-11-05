@@ -1,3 +1,8 @@
+/**
+ * This is a data container for user which only
+ * used to store data of friend
+ */
+
 package com.derek.googlemap.Model;
 
 public class Friend {
@@ -13,7 +18,7 @@ public class Friend {
     private String imageUrl;
 
     public Friend(){
-        //empty constructor needed
+        //empty constructor needed for firebase toObject() method
     }
 
     public Friend(String fName, double lati, double loti, String birthday, String email, String gender, String phone, String friends, String imageUrl) {
@@ -29,6 +34,7 @@ public class Friend {
     }
 
 
+    /*********** Getters ***********/
 
     public String getfName() {
         return fName;
@@ -65,6 +71,8 @@ public class Friend {
     public String getImageUrl() {
         return imageUrl;
     }
+
+    /*********** Setters ***********/
 
     public void setfName(String fName) {
         this.fName = fName;

@@ -1,3 +1,7 @@
+/**
+ * This is a data container for user
+ */
+
 package com.derek.googlemap.Model;
 
 import android.text.TextUtils;
@@ -18,13 +22,25 @@ public class User {
     private int position;
 
     public User() {
-        //empty constructor needed
+        //empty constructor needed for firebase toObject() method
     }
 
+    /**
+     * Initialize a user with Position
+     * @param position
+     */
     public User(int position) {
         this.position = position;
     }
 
+    /**
+     * Initialize a user with several information
+     *
+     * @param name  user name
+     * @param imageUrl  image path
+     * @param lati latitude
+     * @param loti  longtitude
+     */
     public User(String name, String imageUrl, String lati, String loti) {
         if (TextUtils.isEmpty(name)) {
             name = "No Name";
@@ -34,6 +50,8 @@ public class User {
         this.lati = lati;
         this.loti = loti;
     }
+
+    /******** Setters and Getters ********/
 
     public String getEmail() {
         return email;

@@ -1,3 +1,9 @@
+/**
+ *
+ * This is a utility class for user login
+ *
+ */
+
 package com.derek.googlemap.Utility;
 
 import android.Manifest;
@@ -57,6 +63,7 @@ public class Login extends AppCompatActivity {
         mCreateBtn = findViewById(R.id.createText);
         forgotTextLink = findViewById(R.id.forgotPassword);
 
+        /* issue a login command when clicked */
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +108,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        /* transform to a register activity when clicked */
         mCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +116,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        /* issue a password resetting when clicked */
         forgotTextLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,6 +159,7 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        /* ask for permission needed in this app */
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.BLUETOOTH_ADMIN},
                 100);

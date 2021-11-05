@@ -1,3 +1,8 @@
+/**
+ * This class is an activity to display the friend's detail information.
+ * User are allowed
+ */
+
 package com.derek.googlemap.View;
 
 import android.app.Activity;
@@ -42,6 +47,7 @@ public class FriendDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_detail);
 
+        /* bind views */
         icon = findViewById(R.id.friend_icon);
         name = findViewById(R.id.friend_name);
         email = findViewById(R.id.friend_email);
@@ -52,6 +58,7 @@ public class FriendDetailActivity extends AppCompatActivity {
         deleteFriend = findViewById(R.id.friend_delete);
         back = findViewById(R.id.iv_back);
 
+        // read the data passed from parent, and display them
         Intent intent = getIntent();
         Glide.with(this).load(intent.getExtras().getString("imageUrl")).into(icon);
         name.setText(intent.getExtras().getString("fName"));
@@ -66,15 +73,18 @@ public class FriendDetailActivity extends AppCompatActivity {
         String coord = String.format("%.2f",lati) +" "+String.format("%.2f", loti);
         coordinate.setText(coord);
 
+        // get friend information and the uid of the selected friend
         String[] mFriends = intent.getExtras().getStringArray("mFriends");
         String uidToDelete = intent.getExtras().getString("uidToDelete");
 
+        // when delete is clicked, invoke the delete friend function
         deleteFriend.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 deleteFriend(FriendDetailActivity.this, mFriends,uidToDelete);
             }
         });
 
+        // when back button is clicked, finish the activty
         back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 finish();
@@ -82,6 +92,12 @@ public class FriendDetailActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     *
+     * @param activity the activity to display the alert dialog
+     * @param mFriends current user's friend list
+     * @param uidToDelete the uid of delete friend
+     */
     public void deleteFriend(Activity activity, String[] mFriends, String uidToDelete) {
         //Initialize alert dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
@@ -97,6 +113,7 @@ public class FriendDetailActivity extends AppCompatActivity {
                 String mUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 DocumentReference docRef = FirebaseFirestore.getInstance().collection("users").document(mUid);
 
+                // generate the new friends uid data
                 List<String> friendids = new ArrayList<>(Arrays.asList(mFriends));
                 friendids.remove(uidToDelete);
                 friendids.remove("");
@@ -107,6 +124,7 @@ public class FriendDetailActivity extends AppCompatActivity {
                 Map<String, Object> edited = new HashMap<>();
                 edited.put("friends", friends);
 
+                // update the friends information of teh current user in firebase
                 docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
