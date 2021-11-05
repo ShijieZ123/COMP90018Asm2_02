@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,7 @@ public class FriendDetailActivity extends AppCompatActivity {
 
     ImageView icon;
     TextView name, email, gender,birthday,coordinate,phone;
+    private ImageButton back;
     Button deleteFriend;
 
     @Override
@@ -48,6 +50,7 @@ public class FriendDetailActivity extends AppCompatActivity {
         coordinate = findViewById(R.id.friend_coordinate);
         phone = findViewById(R.id.friend_phone);
         deleteFriend = findViewById(R.id.friend_delete);
+        back = findViewById(R.id.iv_back);
 
         Intent intent = getIntent();
         Glide.with(this).load(intent.getExtras().getString("imageUrl")).into(icon);
@@ -69,6 +72,12 @@ public class FriendDetailActivity extends AppCompatActivity {
         deleteFriend.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 deleteFriend(FriendDetailActivity.this, mFriends,uidToDelete);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
             }
         });
     }
