@@ -248,7 +248,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void findFriends() {
         String[] fs = friend.split(",");
         Log.d("Listlength", String.valueOf(fs.length));
-        if (fs.length == 1) {
+        if (fs.length <= 1) {
             return;
         }
         List<String> friendids = new ArrayList<>(Arrays.asList(fs));
