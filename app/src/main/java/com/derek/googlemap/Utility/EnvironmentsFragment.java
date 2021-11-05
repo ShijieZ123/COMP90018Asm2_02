@@ -41,6 +41,7 @@ public class EnvironmentsFragment extends Fragment implements SensorEventListene
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        /* bind views and access system sensors */
         temperatureView = getView().findViewById(R.id.temperature);
         pressureView =  getView().findViewById(R.id.pressure);
         humidityView =  getView().findViewById(R.id.humidity);
@@ -50,6 +51,7 @@ public class EnvironmentsFragment extends Fragment implements SensorEventListene
         pressure = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE);
         humidity = sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
 
+        /* if sensors cannot be found we have nothing to display */
         if (temperature == null) temperatureView.setText("Temperature sensor unavailable");
         if (pressure == null) pressureView.setText("Pressure sensor unavailable");
         if (humidity == null) humidityView.setText("Humidity sensor unavailable");
@@ -63,6 +65,7 @@ public class EnvironmentsFragment extends Fragment implements SensorEventListene
         });
     }
 
+    /* update any sensors that change */
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         Sensor sensor = sensorEvent.sensor;

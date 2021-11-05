@@ -28,9 +28,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 public class Login extends AppCompatActivity {
-    EditText mEmail,mPassword;
+    EditText mEmail, mPassword;
     Button mLoginBtn;
-    TextView mCreateBtn,forgotTextLink;
+    TextView mCreateBtn, forgotTextLink;
     ProgressBar progressBar;
     FirebaseAuth fAuth;
 
@@ -39,6 +39,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        /* if the user did not log out last time they used the app, skip past login */
         fAuth = FirebaseAuth.getInstance();
         if (fAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -47,6 +48,7 @@ public class Login extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
+        /* bind views */
         mEmail = findViewById(R.id.Email);
         mPassword = findViewById(R.id.password);
         progressBar = findViewById(R.id.progressBar);
@@ -62,32 +64,34 @@ public class Login extends AppCompatActivity {
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
 
-                if(TextUtils.isEmpty(email)){
-                    mEmail.setError("Email is Required.");
-                    return;
+                /* check input is non-empty */
+                boolean inputError = false;
+                if (TextUtils.isEmpty(email)) {
+                    mEmail.setError("Email is required.");
+                    inputError = true;
                 }
 
-                if(TextUtils.isEmpty(password)){
-                    mPassword.setError("Password is Required.");
-                    return;
+                if (TextUtils.isEmpty(password)) {
+                    mPassword.setError("Password is required.");
+                    inputError = true;
                 }
-
-                if(password.length() < 6){
-                    mPassword.setError("Password Must be >= 6 Characters");
+                if (inputError) {
+                    Toast.makeText(Login.this, "Error: please check input fields", Toast.LENGTH_SHORT);
                     return;
                 }
 
                 progressBar.setVisibility(View.VISIBLE);
 
                 // authenticate the user
-                fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        // authentication successful; login and start main activity
+                        if (task.isSuccessful()) {
                             Toast.makeText(Login.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
-                        }else {
+                        } else {
                             Toast.makeText(Login.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);
                         }
@@ -117,7 +121,7 @@ public class Login extends AppCompatActivity {
                 passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                            // extract the email and send reset link
+                        // extract the email and send reset link
                         String mail = resetMail.getText().toString();
                         fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

@@ -159,12 +159,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         ButterKnife.bind(this);
 
 
+        /* initialise firebase variables */
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         user = fAuth.getCurrentUser();
         storageReference = FirebaseStorage.getInstance().getReference();
 
 
+        /* bind views and setup map */
         iv_image = findViewById(R.id.iv_image);
         mProgressBar = findViewById(R.id.myDataLoaderProgressBar);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -198,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //compass
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+        /* view binding and sensor access */
         imageView = findViewById(R.id.imageView);
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -212,6 +215,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         speed = (TextView) findViewById(R.id.speed);
         LocationManager lm = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
+        /* request location permissions as required */
         if (ActivityCompat.checkSelfPermission(this, ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[] {ACCESS_FINE_LOCATION}, 200);
         }
@@ -224,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1, 1, this);
         this.onLocationChanged(null);
 
-        // click listener on menu button
+        // click listener for menu button
         ImageButton menu_button = (ImageButton) findViewById(R.id.map_menu);
         menu_button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -238,6 +242,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
+    /* marks each of a user's friends on the map */
     private void findFriends() {
         String[] fs = friend.split(",");
 
@@ -335,6 +340,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         polyline = mMap.addPolyline((PolylineOptions) values[0]);
     }
 
+    /* adds a marker for the user on the map */
     private void addUserMarker(LatLng sydney, String imageUrl, String userName) {
 
         Picasso.with(this).load(imageUrl).placeholder(R.mipmap.default_head).error(R.mipmap.default_head).into(new Target() {
@@ -575,6 +581,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         activity.startActivity(intent);
     }
 
+    /* show popup menu */
     public void showPopup(View v) {
         PopupMenu popup = new PopupMenu(this, v);
         popup.setOnMenuItemClickListener(this);
@@ -582,6 +589,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         popup.show();
     }
 
+    /* defines behaviour for different items in the menu */
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         Intent i;
@@ -603,6 +611,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
+    /* update speed display on change in location */
     @Override
     public void onLocationChanged(@NonNull Location location) {
         if (location==null){

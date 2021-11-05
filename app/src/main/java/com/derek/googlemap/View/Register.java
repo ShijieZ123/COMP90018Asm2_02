@@ -42,7 +42,7 @@ import androidx.core.app.ActivityCompat;
 
 public class Register extends AppCompatActivity {
     public static final String TAG = "TAG";
-    EditText mFullName, mEmail, mPassword, mPhone, mBirthday;
+    EditText mFullName, mEmail, mPassword, mConfirmPassword, mPhone, mBirthday;
     Spinner mGender;
     Button mRegisterBtn;
     TextView mLoginBtn;
@@ -64,10 +64,12 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        /* bind views */
         back = findViewById(R.id.iv_back);
         mFullName = findViewById(R.id.fullName);
         mEmail = findViewById(R.id.Email);
         mPassword = findViewById(R.id.password);
+        mConfirmPassword = findViewById(R.id.confirmPassword);
         mPhone = findViewById(R.id.phone);
         mRegisterBtn = findViewById(R.id.registerBtn);
         mLoginBtn = findViewById(R.id.createText);
@@ -78,6 +80,8 @@ public class Register extends AppCompatActivity {
         mGender.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, genders));
 //        mGender.setOnItemSelectedListener(this);
 
+        /* bypass if current user detected, ie. user did not previously log out
+        *  should not happen since app starts on login screen which also handles this */
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressBar);
@@ -88,6 +92,7 @@ public class Register extends AppCompatActivity {
         }
 
 
+        /* access system location sensors and check for provider and permissions */
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         List<String> providers = locationManager.getProviders(true);
         if (providers.contains(LocationManager.GPS_PROVIDER)) {
@@ -109,29 +114,41 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final String email = mEmail.getText().toString().trim();
-                String password = mPassword.getText().toString().trim();
+                final String password = mPassword.getText().toString().trim();
+                final String confirmPassword = mConfirmPassword.getText().toString().trim();
                 final String fullName = mFullName.getText().toString();
                 final String phone = mPhone.getText().toString();
                 final String birthday = mBirthday.getText().toString();
                 final String gender =  mGender.getSelectedItem().toString();
 
+                /* check for required input and matching passwords */
+                boolean inputError = false;
                 if (TextUtils.isEmpty(email)) {
-                    mEmail.setError("Email is Required.");
-                    return;
+                    mEmail.setError("Email is required.");
+                    inputError = true;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    mPassword.setError("Password is Required.");
-                    return;
+                    mPassword.setError("Password is required.");
+                    inputError = true;
                 }
 
                 if (password.length() < 6) {
-                    mPassword.setError("Password Must be >= 6 Characters");
-                    return;
+                    mPassword.setError("Password must be >= 6 characters");
+                    inputError = true;
+                }
+
+                if (!password.equals(confirmPassword)) {
+                    mConfirmPassword.setError("Passwords do not match");
+                    inputError = true;
                 }
 
                 if(TextUtils.isEmpty(birthday)){
                     mBirthday.setError("Birthday is required");
+                    inputError = true;
+                }
+                if (inputError) {
+                    Toast.makeText(Register.this, "Error: please check input fields", Toast.LENGTH_SHORT);
                     return;
                 }
 
@@ -157,6 +174,7 @@ public class Register extends AppCompatActivity {
                                 }
                             });
 
+                            /* fill in the user fields with provided information */
                             Toast.makeText(Register.this, "User Created.", Toast.LENGTH_SHORT).show();
                             DocumentReference documentReference = fStore.collection("users").document(fuser.getUid());
                             Map<String, Object> user = new HashMap<>();
@@ -182,6 +200,7 @@ public class Register extends AppCompatActivity {
                                     Log.d(TAG, "onFailure: " + e.toString());
                                 }
                             });
+                            /* start main activity */
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
 

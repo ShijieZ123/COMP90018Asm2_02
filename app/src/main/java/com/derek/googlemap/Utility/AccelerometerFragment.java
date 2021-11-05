@@ -46,6 +46,7 @@ public class AccelerometerFragment extends Fragment implements SensorEventListen
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        /* bind views and access system sensors */
         xView = getView().findViewById(R.id.accX);
         yView =  getView().findViewById(R.id.accY);
         zView =  getView().findViewById(R.id.accZ);
@@ -53,6 +54,7 @@ public class AccelerometerFragment extends Fragment implements SensorEventListen
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
+        /* if we cannot access the accelerometer then there is nothing to display */
         if (accelerometer != null) {
             xView.setText("X acceleration: " );
             yView.setText("Y acceleration: " );
@@ -69,6 +71,7 @@ public class AccelerometerFragment extends Fragment implements SensorEventListen
     }
 
 
+    /* update display if sensor values change */
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         final float[] values = sensorEvent.values;
