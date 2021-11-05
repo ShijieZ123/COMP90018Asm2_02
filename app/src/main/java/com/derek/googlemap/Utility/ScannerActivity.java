@@ -26,6 +26,8 @@ import static android.Manifest.permission.CAMERA;
 
 import com.derek.googlemap.R;
 import com.derek.googlemap.View.ProfileActivity;
+import com.derek.googlemap.View.SearchActivity;
+import com.derek.googlemap.View.UploadActivity;
 
 public class ScannerActivity extends AppCompatActivity {
 
@@ -72,16 +74,12 @@ public class ScannerActivity extends AppCompatActivity {
 
             @Override
             public void onCodeScanned(String data) {
-
-                //tvScanner.setText(data);
-
                 /* QR code scanned should be an encrypted user ID
                  *  pass the user ID into the profile activity to view */
-                Intent i = new Intent(ScannerActivity.this, ProfileActivity.class);
-                Bundle b = new Bundle();
-                b.putString("uid", data);
-                i.putExtras(b);
-                startActivityForResult(i, 1);
+                Intent intent = new Intent(ScannerActivity.this, SearchActivity.class);
+                intent.putExtra("uid", data);
+                startActivity(intent);
+                finish();
             }
         });
 

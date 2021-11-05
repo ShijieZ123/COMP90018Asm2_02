@@ -18,6 +18,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".Utility.GeneratorActivity"></activity>
         <activity android:name=".Utility.ScannerActivity" />
+        <activity android:name=".View.SearchActivity"/>
         <activity android:name=".View.EditProfile" />
         <activity android:name=".View.ProfileActivity" />
         <activity android:name=".View.FriendListActivity" />

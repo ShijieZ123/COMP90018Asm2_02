@@ -173,42 +173,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         mProgressBar.setVisibility(View.VISIBLE);
 
-//        mStorage = FirebaseStorage.getInstance();
-//        mDatabaseRef = FirebaseDatabase.getInstance().getReference("teachers_uploads");
-//
-//        mDBListener = mDatabaseRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//
-//                for (DataSnapshot teacherSnapshot : dataSnapshot.getChildren()) {
-//                    Teacher upload = teacherSnapshot.getValue(Teacher.class);
-//                    upload.setKey(teacherSnapshot.getKey());
-//
-//                    LatLng sydney = new LatLng(Double.parseDouble(upload.getLati()), Double.parseDouble(upload.getLoti()));
-//                    addUserMarker(sydney, upload.getImageURL(), upload.getName());
-//
-//                    Log.e("user", upload.getName() + "---" + upload.getImageURL());
-//
-////                    Glide.with(ItemsActivity.this).load(upload.getImageURL()).into(iv_image);
-//                }
-//
-//                LatLng sydney = new LatLng(-25.344, 131.036);
-//                addUserMarker(sydney, "https://img2.baidu.com/it/u=3243760465,2391088822&fm=26&fmt=auto", "user");
-//
-//                mProgressBar.setVisibility(View.GONE);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                Toast.makeText(ItemsActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-//                mProgressBar.setVisibility(View.INVISIBLE);
-//            }
-//        });
-
-
-        // Create a reference to the cities collection
-
-
         DocumentReference documentReference = fStore.collection("users").document(fAuth.getCurrentUser().getUid());
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -268,15 +232,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        // friends list test button
-//        Button button = findViewById(R.id.friends);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), FriendListActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
         //direction
         listPoints = new ArrayList<LatLng>();
 
@@ -296,8 +251,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.e("onComplete", document.getId() + " => " + document.getString("phone"));
 
-//                    profilePhone.setText(documentSnapshot.getString("phone"));
-
                                 LatLng sydney = new LatLng(document.getDouble("lati"), document.getDouble("loti"));
                                 addUserMarker(sydney, document.getString("imageUrl"), document.getString("fName"));
 
@@ -314,7 +267,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     protected void onDestroy() {
         super.onDestroy();
-//        mDatabaseRef.removeEventListener(mDBListener);
     }
 
     @Override
@@ -348,8 +300,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 //get direction
                 if(listPoints.size()==2){
                     String url = getUrl(listPoints.get(0),listPoints.get(1), "driving");
-//                    TaskRequestDirections taskRequestDirections = new TaskRequestDirections();
-//                    taskRequestDirections.execute(url);
                     new FetchURL(MainActivity.this).execute(url,"driving");
                 }
 
@@ -386,21 +336,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void addUserMarker(LatLng sydney, String imageUrl, String userName) {
-
-//        View marker = ((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.googlemap_marker_layout, null);
-//        ImageView numTxt = (ImageView) marker.findViewById(R.id.iv_head);
-//
-//        Picasso.with(this).load(imageUrl).into(iv_image);
-//
-//        Bitmap bitmap = createDrawableFromView(this, marker);
-//
-//        iv_image.setImageBitmap(bitmap);
-//
-//
-//        mMap.addMarker(new MarkerOptions()
-//                .position(sydney)
-//                .title(userName));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
         Picasso.with(this).load(imageUrl).placeholder(R.mipmap.default_head).error(R.mipmap.default_head).into(new Target() {
             @Override
@@ -478,7 +413,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             case R.id.iv_refresh:
 
-//                intent = new Intent(this, EditProfile.class);
                 intent = new Intent(this, ProfileActivity.class);
 
                 startActivity(intent);
@@ -595,6 +529,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void ClickLogout(View view){
         //logout
         logout(this);
+//        Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+//        intent.putExtra("uid", "AGmYx6VNGlPdVFDS12bGqTIn4Xz1");
+//        startActivity(intent);
     }
 
     public void logout(Activity activity) {
@@ -608,11 +545,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-//                //Finish activity
-//                activity.finishAffinity();
-//                //Exist app
-//                System.exit(0);
-
                 //sign out the account
                 fAuth.signOut();
                 //Redirect activity to Login
