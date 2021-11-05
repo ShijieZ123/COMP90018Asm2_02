@@ -59,6 +59,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -70,6 +71,7 @@ import com.squareup.picasso.Target;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -245,9 +247,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     /* marks each of a user's friends on the map */
     private void findFriends() {
         String[] fs = friend.split(",");
-
+        List<String> friendids = new ArrayList<>(Arrays.asList(fs));
+        friendids.remove("");
+        int count = 0;
+        for (String f:friendids){
+            ++count;
+            Log.d("friend" + count, "|"+f+"|");
+        }
+        if (count == 0) {return;}
         fStore.collection("users")
-                .whereIn("fName", Arrays.asList(fs))
+                .whereIn(FieldPath.documentId(), friendids)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -260,6 +269,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 addUserMarker(sydney, document.getString("imageUrl"), document.getString("fName"));
 
                                 mProgressBar.setVisibility(View.GONE);
+                                Log.d("friend_marker", "add successfully");
 
                             }
                         } else {

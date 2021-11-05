@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -113,7 +114,7 @@ public class FriendListActivity extends AppCompatActivity{
                                 intent.putExtra("mFriends",splitedFriends);
                                 intent.putExtra("uidToDelete",docs.get(i).getId());
 
-                                startActivity(intent);
+                                startActivityForResult(intent, 1);
                             }
                         });
                     }
@@ -128,6 +129,14 @@ public class FriendListActivity extends AppCompatActivity{
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 0) {
+            recreate();
+        }
     }
 
     public void exitFriendList(Activity activity) {
