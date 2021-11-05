@@ -129,8 +129,9 @@ public class FriendDetailActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(FriendDetailActivity.this, "Friend deleted", Toast.LENGTH_SHORT).show();
+                        setResult(0);
                         finish();
-                        getParent().finish();
+                        //getParent().finish();
                     }
                 });
             }
