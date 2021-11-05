@@ -202,7 +202,7 @@ public class EditProfile extends TakePhotoActivity {
                     return;
                 }
 
-                user.updateEmail(email).addOnSuccessListener(new OnSuccessListener<Void>() {
+                user.updateEmail(profileEmail.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         DocumentReference docRef = fStore.collection("users").document(user.getUid());
@@ -216,7 +216,7 @@ public class EditProfile extends TakePhotoActivity {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(EditProfile.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-
+                                setResult(0);
                                 finish();
                             }
                         });
