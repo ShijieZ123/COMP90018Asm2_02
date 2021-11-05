@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/friendlist"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin" />
+    android:layout_height="match_parent">
 
+<RelativeLayout
+    android:id="@+id/relativeLayout3"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    tools:ignore="MissingConstraints">
+
+    <ImageButton
+        android:id="@+id/iv_back"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:background="#fafafa"
+        android:scaleType="centerInside"
+        android:src="@mipmap/ico_go_back" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Friends"
+        android:textSize="16dp" />
+
+</RelativeLayout>
+
+    <ListView
+        android:id="@+id/friendlist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="48dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3"
+        tools:layout_editor_absoluteX="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -119,26 +119,38 @@ public class UploadActivity extends AppCompatActivity {
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
                     Toast.makeText(UploadActivity.this, "An Upload is Still in Progress", Toast.LENGTH_SHORT).show();
                 } else {
-//                    uploadFile();
-
-                    stringBuilder.append("," + nameEditText.getText().toString());
-
-                    DocumentReference docRef = fStore.collection("users").document(user.getUid());
-                    Map<String, Object> edited = new HashMap<>();
-                    edited.put("friends", stringBuilder.toString());
-                    docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(UploadActivity.this, "Add success", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                    });
-
+                    Log.e("CHECK UID", String.valueOf(nameEditText.getText()));
+                    Intent intent = new Intent(UploadActivity.this, SearchActivity.class);
+                    String uid = nameEditText.getText().toString();
+                    if(uid.isEmpty()){
+                        return;
+                    }
+                    intent.putExtra("uid", uid);
+                    startActivity(intent);
+                    finish();
                 }
+
+//                if (mUploadTask != null && mUploadTask.isInProgress()) {
+//                    Toast.makeText(UploadActivity.this, "An Upload is Still in Progress", Toast.LENGTH_SHORT).show();
+//                } else {
+////                    uploadFile();
+//
+//                    stringBuilder.append("," + nameEditText.getText().toString());
+//
+//                    DocumentReference docRef = fStore.collection("users").document(user.getUid());
+//                    Map<String, Object> edited = new HashMap<>();
+//                    edited.put("friends", stringBuilder.toString());
+//                    docRef.update(edited).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                        @Override
+//                        public void onSuccess(Void aVoid) {
+//                            Toast.makeText(UploadActivity.this, "Add success", Toast.LENGTH_SHORT).show();
+//                            finish();
+//                        }
+//                    });
+//
+//                }
             }
         });
-
-
     }
 
     private void showLocation(Location location) {
